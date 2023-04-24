@@ -1,0 +1,39 @@
+.container {
+
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0 12px;
+  width: 500px;
+  height: 48px;
+  background: #FFFFFF;
+  border: 1px solid #EAEBED;
+  border-radius: 8px;
+  flex: none;
+  order: 0;
+  flex-grow: 0;
+
+  .input {
+    width: 80%;
+    height: 21px;
+    font-weight: 400;
+    font-size: 14px;
+    line-height: 21px;
+    color: #ACADB9;
+    border: none;
+    outline: 0;
+  }
+
+  .button {
+    padding: 4px 20px;
+    width: 83px;
+    height: 32px;
+    background: #5E96FC;
+    border-radius: 8px;
+    color: white;
+    border: none;
+  }
+}
+
+
