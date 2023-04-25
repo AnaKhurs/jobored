@@ -1,7 +1,7 @@
 import React, {memo} from "react";
 
-import {Filter} from "../features/Filter/Filter";
-import {Result} from "../features/Result/Result";
+import {Filter} from "../../features/Filter/Filter";
+import {Result} from "../../features/Result/Result";
 
 import s from "./SearchPage.module.scss"
 
