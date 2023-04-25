@@ -34,25 +34,24 @@ const appSlice = createSlice({
     }*/
 })
 
-/*
-//Thunk
-export const initializeApp = createAsyncThunk(
-    'app/initializeApp',
-    async (_, {dispatch}) => {
-        try {
-            dispatch(setAppStatus('loading'))
-            const {data} = await authAPI.authMe()
-            dispatch(isLoggedIn(true))
-            dispatch(setUserProfile(data))
-            return {id: data._id}
-        } catch (e: any) {
-            dispatch(isLoggedIn(false))
-        } finally {
-            dispatch(setAppInitialized(true))
-            dispatch(setAppStatus('succeeded'))
-        }
-    }
-)*/
+// //Thunk
+// export const initializeApp = createAsyncThunk(
+//     'app/initializeApp',
+//     async (_, {dispatch}) => {
+//         try {
+//             dispatch(setAppStatus('loading'))
+//             const {data} = await authAPI.authMe()
+//             dispatch(isLoggedIn(true))
+//             dispatch(setUserProfile(data))
+//             return {id: data._id}
+//         } catch (e: any) {
+//             dispatch(isLoggedIn(false))
+//         } finally {
+//             dispatch(setAppInitialized(true))
+//             dispatch(setAppStatus('succeeded'))
+//         }
+//     }
+// )
 
 //types
 type InitStateType = {

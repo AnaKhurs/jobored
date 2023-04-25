@@ -4,8 +4,9 @@ import {Filter} from "../../features/Filter/Filter";
 import {Result} from "../../features/Result/Result";
 
 import s from "./SearchPage.module.scss"
+import {NotAuthRedirect} from "../../../hoc/NotAuthRedirect";
 
-export const SearchPage = memo(() => {
+export const Component = memo(() => {
 
     return (
         <div className={s.container}>
@@ -14,3 +15,5 @@ export const SearchPage = memo(() => {
         </div>
     );
 });
+
+export const SearchPage = NotAuthRedirect(Component)
