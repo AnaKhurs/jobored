@@ -1,8 +1,8 @@
-import React, {memo} from "react";
+import React, {memo, useEffect} from "react";
 
 import {Search} from "./Search/Search";
 import {Pagination} from "./Pagination/Pagination";
-import {Cards} from "./Cards/Cards";
+import {Vacancies} from "./Vacancies/Vacancies";
 
 import s from "./Result.module.scss"
 
@@ -11,7 +11,7 @@ export const Result = memo(() => {
     return (
         <div className={s.header}>
             <Search/>
-            <Cards/>
+            <Vacancies/>
             <Pagination/>
         </div>
     );

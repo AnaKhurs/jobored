@@ -1,11 +1,11 @@
 import {createAsyncThunk, createSlice, PayloadAction} from "@reduxjs/toolkit";
 
-import {authAPI} from "./../dal/authApi";
+import {authAPI} from "../dal/authApi";
 import {setAppError, setAppStatus} from "./app-reducer";
-
+import {getVacancies} from "./vacancies-reducer";
 
 const initialState: InitStateType = {
-    isLoggedIn: false,
+    isLoggedIn: true,
 }
 
 const loginSlice = createSlice({
@@ -18,7 +18,6 @@ const loginSlice = createSlice({
     },
 })
 
-
 //Thunk
 export const loginTC = createAsyncThunk(
     "login/loginTC",
@@ -27,7 +26,8 @@ export const loginTC = createAsyncThunk(
             dispatch(setAppStatus("loading"))
             let {data} = await authAPI.login(params.login, params.password, params.client_id, params.client_secret, params.hr)
             dispatch(isLoggedIn(true))
-            /*            dispatch(setUserProfile(data))*/
+            localStorage.setItem("token", data.access_token)
+            dispatch(getVacancies({}))
             dispatch(setAppStatus("succeeded"))
         } catch (e: any) {
             const error = e.response
@@ -38,7 +38,6 @@ export const loginTC = createAsyncThunk(
         }
     }
 )
-
 
 //types
 type InitStateType = {

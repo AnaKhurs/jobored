@@ -1,7 +1,4 @@
-import {createAsyncThunk, createSlice, PayloadAction} from "@reduxjs/toolkit";
-/*import {authAPI} from "../dal/authApi";*/
-import {isLoggedIn} from "./login-reducer";
-
+import {createSlice, PayloadAction} from "@reduxjs/toolkit";
 
 const initialState: InitStateType = {
     error: null,
@@ -9,7 +6,6 @@ const initialState: InitStateType = {
     isInitialized: false,
     _id: '',
 }
-
 
 const appSlice = createSlice({
     name: 'app',
@@ -25,33 +21,7 @@ const appSlice = createSlice({
             state.isInitialized = action.payload
         },
     },
-/*    extraReducers: builder => {
-        builder.addCase(initializeApp.fulfilled, (state, action) => {
-            if (action.payload) {
-                state._id = action.payload.id
-            }
-        });
-    }*/
 })
-
-// //Thunk
-// export const initializeApp = createAsyncThunk(
-//     'app/initializeApp',
-//     async (_, {dispatch}) => {
-//         try {
-//             dispatch(setAppStatus('loading'))
-//             const {data} = await authAPI.authMe()
-//             dispatch(isLoggedIn(true))
-//             dispatch(setUserProfile(data))
-//             return {id: data._id}
-//         } catch (e: any) {
-//             dispatch(isLoggedIn(false))
-//         } finally {
-//             dispatch(setAppInitialized(true))
-//             dispatch(setAppStatus('succeeded'))
-//         }
-//     }
-// )
 
 //types
 type InitStateType = {
@@ -64,6 +34,6 @@ type InitStateType = {
 export type StatusType = 'idle' | 'loading' | 'succeeded' | 'failed'
 
 //actions
-export const {setAppError, setAppStatus, setAppInitialized} = appSlice.actions
+export const {setAppError, setAppStatus} = appSlice.actions
 
 export const appReducer = appSlice.reducer

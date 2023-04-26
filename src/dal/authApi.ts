@@ -1,4 +1,3 @@
-// api
 import {instance} from './instance';
 import {AxiosResponse} from 'axios';
 
@@ -9,9 +8,7 @@ export const authAPI = {
     },
 }
 
-
 // types
-
 export type LoginResponseType = {
     "access_token": string,
     "refresh_token": string,

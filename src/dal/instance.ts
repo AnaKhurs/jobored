@@ -5,5 +5,6 @@ export const instance = axios.create({
     withCredentials: true,
     headers: {
         "x-secret-key": process.env.REACT_APP_API_KEY,
+/*        "content-type": "application/x-www-form-urlencoded",*/
     },
 })
