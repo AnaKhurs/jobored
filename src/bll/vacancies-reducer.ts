@@ -7,6 +7,10 @@ const vacanciesSlice = createSlice({
         initialState: {
             vacanciesData: {
                 vacancies: [] as VacancyType[],
+                total: 0 as number,
+                page: 1 as number,
+                pageCount: 4 as number,
+                more: false,
             },
             packId: null as string | null,
             isLoaded: false,
@@ -15,7 +19,8 @@ const vacanciesSlice = createSlice({
         extraReducers: builder => {
             builder.addCase(getVacancies.fulfilled, (state, action) => {
                 if (action.payload) {
-                    state.vacanciesData.vacancies = [...action.payload]
+                    state.vacanciesData.vacancies = [...action.payload.objects]
+                    state.vacanciesData.total = action.payload.total
                     state.isLoaded = true
                 }
             });
@@ -31,10 +36,10 @@ export const getVacancies = createAsyncThunk(
         try {
             const res = await vacanciesApi.getVacancies(data)
 
-            console.log('ss', res.data.objects)
+            //console.log('ss', res.data)
 
             dispatch(setAppStatus("succeeded"))
-            return res.data.objects
+            return res.data
         } catch (e: any) {
             const error = e.response
                 ? e.response.data.error

@@ -6,6 +6,11 @@ export type GetVacanciesPayloadType = {
     payment_from?: number,
     payment_to?: number,
     catalogues?: number,
+
+    page?: number,
+    count?: number,
+
+
 };
 
 export const vacanciesApi = {

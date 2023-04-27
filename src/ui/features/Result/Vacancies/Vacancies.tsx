@@ -9,9 +9,9 @@ export const Vacancies = memo(() => {
 
     const dispatch = useAppDispatch()
 
-    useEffect(() => {
+/*    useEffect(() => {
         dispatch(getVacancies({}))
-    }, [])
+    }, [])*/
 
     const {vacanciesData} = useAppSelector(state => state.vacancies)
 
