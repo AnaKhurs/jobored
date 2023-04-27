@@ -1,21 +1,10 @@
-import React, {memo, useEffect} from "react";
-
-import s from "./Vacancies.module.scss"
+import React, {memo} from "react";
+import {useAppSelector} from "../../../bll/store";
 import {Vacancy} from "./Vacancy/Vacancy";
-import {getVacancies} from "../../../../bll/vacancies-reducer";
-import {useAppDispatch, useAppSelector} from "../../../../bll/store";
 
 export const Vacancies = memo(() => {
 
-    const dispatch = useAppDispatch()
-
-/*    useEffect(() => {
-        dispatch(getVacancies({}))
-    }, [])*/
-
-    const {vacanciesData} = useAppSelector(state => state.vacancies)
-
-    const {vacancies} = vacanciesData
+    const {vacanciesData: {vacancies}} = useAppSelector(state => state.vacancies)
 
     return (
         <div>

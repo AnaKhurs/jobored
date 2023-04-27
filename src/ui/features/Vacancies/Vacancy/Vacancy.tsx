@@ -2,8 +2,8 @@ import React, {memo} from "react";
 
 import s from "./Vacancy.module.scss"
 
-import locationIcon from "../../../../../img/location.svg";
-import starIcon from "../../../../../img/star.svg";
+import locationIcon from "../../../../img/location.svg";
+import starIcon from "../../../../img/star.svg";
 
 type PropsType = {
     profession: string
