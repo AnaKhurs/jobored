@@ -5,11 +5,13 @@ import {TypedUseSelectorHook, useDispatch, useSelector} from "react-redux";
 import {loginReducer} from "./login-reducer";
 import {appReducer} from "./app-reducer";
 import {vacanciesReducer} from "./vacancies-reducer";
+import {cataloguesReducer} from "./catalogues-reducer";
 
 const reducers = combineReducers({
     login: loginReducer,
     app: appReducer,
     vacancies: vacanciesReducer,
+    catalogues: cataloguesReducer,
 })
 
 export const store = configureStore({

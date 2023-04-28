@@ -10,6 +10,7 @@ import {Pagination} from "../../features/Pagination/Pagination";
 import {NotAuthRedirect} from "../../../hoc/NotAuthRedirect";
 
 import s from "./SearchPage.module.scss"
+import {getCatalogues} from "../../../bll/catalogues-reducer";
 
 export const Component = memo(() => {
 
@@ -29,6 +30,7 @@ export const Component = memo(() => {
 
     useEffect(() => {
         dispatch(getVacancies({...fetchData}))
+        dispatch(getCatalogues({}))
     }, [])
 
     const onPageChange = (page: number) => {
@@ -38,9 +40,16 @@ export const Component = memo(() => {
         }))
     }
 
+    const onSetFilterCategories = (catalog: number) => {
+        dispatch(getVacancies({
+            ...fetchData,
+            catalog,
+        }))
+    }
+
     return (
         <div className={s.container}>
-            <Filter/>
+            <Filter onSetFilterCategories={onSetFilterCategories}/>
             <div>
                 <Search/>
                 <Vacancies/>

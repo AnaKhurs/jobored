@@ -1,8 +1,20 @@
 import React, {memo} from "react";
 
 import s from "./Filter.module.scss"
+import {useAppSelector} from "../../../bll/store";
+import {Vacancy} from "../Vacancies/Vacancy/Vacancy";
 
-export const Filter = memo(() => {
+type PropsType = {
+    onSetFilterCategories: (catalog: number) => void
+}
+
+export const Filter = memo(({onSetFilterCategories}: PropsType) => {
+
+    const catalogues = useAppSelector(state => state.catalogues.catalogues)
+
+    const onClickHandler = (value: number) => {
+        onSetFilterCategories(value)
+    }
 
     return (
         <div className={s.filterContainer}>
@@ -12,7 +24,11 @@ export const Filter = memo(() => {
             </div>
             <div className={s.filterSettings}>
                 <div className={s.title}>Отрасль</div>
-                <input className={s.input} placeholder={"Выберете отрасль"}/>
+                <select className={s.input}>
+                    {catalogues && catalogues.map((el, index) => {
+                        return <option onClick={() => onClickHandler(1)}>{el.title}</option>
+                    })}
+                </select>
             </div>
             <div className={s.filterSettings}>
                 <div className={s.title}>Оклад</div>

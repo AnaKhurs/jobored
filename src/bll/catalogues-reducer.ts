@@ -1,27 +1,18 @@
 import {createAsyncThunk, createSlice} from "@reduxjs/toolkit";
 import {setAppError, setAppStatus} from "./app-reducer";
 import {vacanciesApi, VacancyType} from "../dal/vacanciesApi";
+import {CatalogType, cataloguesApi} from "../dal/cataloguesApi";
 
-const vacanciesSlice = createSlice({
-        name: "vacancies",
+const cataloguesSlice = createSlice({
+        name: "catalogues",
         initialState: {
-            vacanciesData: {
-                vacancies: [] as VacancyType[],
-                total: 0 as number,
-                page: 1 as number,
-                pageCount: 4 as number,
-                more: false,
-            },
-            packId: null as string | null,
-            isLoaded: false,
+            catalogues: [] as CatalogType[],
         },
         reducers: {},
         extraReducers: builder => {
-            builder.addCase(getVacancies.fulfilled, (state, action) => {
+            builder.addCase(getCatalogues.fulfilled, (state, action) => {
                 if (action.payload) {
-                    state.vacanciesData.vacancies = [...action.payload.objects]
-                    state.vacanciesData.total = action.payload.total
-                    state.isLoaded = true
+                    state.catalogues = [...action.payload]
                 }
             });
         }
@@ -29,15 +20,12 @@ const vacanciesSlice = createSlice({
 )
 
 //Thunk
-export const getVacancies = createAsyncThunk(
-    "vacancies/getVacancies",
+export const getCatalogues = createAsyncThunk(
+    "catalogues/getCatalogues",
     async (data: any, {dispatch, rejectWithValue}) => {
         dispatch(setAppStatus("loading"))
         try {
-            const res = await vacanciesApi.getVacancies(data)
-
-            //console.log('ss', res.data)
-
+            const res = await cataloguesApi.getCatalogues()
             dispatch(setAppStatus("succeeded"))
             return res.data
         } catch (e: any) {
@@ -52,5 +40,5 @@ export const getVacancies = createAsyncThunk(
     }
 )
 
-export const vacanciesReducer = vacanciesSlice.reducer
+export const cataloguesReducer = cataloguesSlice.reducer
 
