@@ -19,13 +19,19 @@ export const Component = memo(() => {
     const {
         vacanciesData: {
             pageCount: count,
-            page
+            page,
+            catalogues,
+            payment_to,
+            payment_from,
         }
     } = useAppSelector(state => state.vacancies)
 
     const fetchData: GetVacanciesPayloadType = {
         page,
         count,
+        catalogues,
+        payment_to,
+        payment_from,
     }
 
     useEffect(() => {
@@ -40,16 +46,18 @@ export const Component = memo(() => {
         }))
     }
 
-    const onSetFilterCategories = (catalog: number) => {
+    const onSetFilter = (catalogues: number, payment_from: number, payment_to: number) => {
         dispatch(getVacancies({
             ...fetchData,
-            catalog,
+            catalogues,
+            payment_from,
+            payment_to,
         }))
     }
 
     return (
         <div className={s.container}>
-            <Filter onSetFilterCategories={onSetFilterCategories}/>
+            <Filter onSetFilter={onSetFilter}/>
             <div>
                 <Search/>
                 <Vacancies/>

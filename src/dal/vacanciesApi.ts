@@ -6,7 +6,7 @@ export type GetVacanciesPayloadType = {
     payment_from?: number,
     payment_to?: number,
     catalogues?: number,
-
+    key?: number,
     page?: number,
     count?: number,
 
@@ -38,6 +38,7 @@ export type VacancyType = {
     payment_to: number
     payment_from: number
     currency: number
+    key: number
 }
 
 type ResponseType = {
