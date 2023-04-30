@@ -5,20 +5,25 @@ import {BrowserRouter} from "react-router-dom";
 import {Provider} from "react-redux";
 import {store} from "./bll/store";
 import App from "./App";
+import {MantineProvider} from '@mantine/core';
 
 import "./index.css";
+import {globalTheme} from "./globalTheme";
 
 const root = ReactDOM.createRoot(
     document.getElementById("root") as HTMLElement
 );
 root.render(
-    <Provider store={store}>
-        <BrowserRouter>
-            <React.StrictMode>
-                <App/>
-            </React.StrictMode>
-        </BrowserRouter>
-    </Provider>
+    <MantineProvider theme={globalTheme} withGlobalStyles withNormalizeCSS>
+
+        <Provider store={store}>
+            <BrowserRouter>
+                <React.StrictMode>
+                    <App/>
+                </React.StrictMode>
+            </BrowserRouter>
+        </Provider>
+    </MantineProvider>
 );
 
 // If you want to start measuring performance in your app, pass a function

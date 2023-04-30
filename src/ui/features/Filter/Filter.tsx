@@ -1,22 +1,89 @@
-import React, {ChangeEvent, memo, useState} from "react";
+import React, {ChangeEvent, memo, useMemo, useState} from "react";
 import {useAppSelector} from "../../../bll/store";
+//import { IconChevronDown } from '@tabler/icons-react';
 
 import s from "./Filter.module.scss"
+import {Button, createStyles, NumberInput, rem, Text, Box, Select, Paper, Flex} from "@mantine/core";
+import {resolveSrv} from "dns";
 
 type PropsType = {
-    onSetFilter: (catalogues: number, payment_from: number, payment_to: number) => void
+    onSetFilter: (keyCatalog?: number | null, payment_from?: number | '' | null, payment_to?: number | '' | null) => void
 }
+
+
+const useStyles = createStyles((theme) => ({
+    select: {
+        "&.mantine-InputWrapper-root.mantine-Select-root": {
+
+            '& > div': {
+                '& .mantine-Input-wrapper.mantine-Select-wrapper': {
+
+                    '& > input': {
+                        height: rem(42),
+                        width: rem(275),
+                        margin: "5px 0",
+                        border: "1px solid #D5D6DC",
+                        borderRadius: "8px",
+                    }
+                },
+            },
+
+
+
+        }
+    },
+    input: {
+        "&.mantine-InputWrapper-root": {
+            "& input": {
+                height: rem(42),
+                width: rem(275),
+                margin: "5px 0",
+                border: "1px solid #D5D6DC",
+                borderRadius: "8px",
+            },
+            "& .mantine-unhde.mantine-Input-rightSection.mantine-NumberInput-rightSection": {
+                marginRight: "8px",
+                "& button": {
+                    border: "none",
+                    color: "#ACADB9",
+                    "&:hover": {
+                        backgroundColor: "white",
+                        cursor: "pointer",
+                        color: "#ACADB9",
+                    }
+                }
+            }
+        },
+    },
+    button: {
+        height: rem(42),
+        width: rem(275),
+        margin: "20px 0",
+    },
+}));
 
 export const Filter = memo(({onSetFilter}: PropsType) => {
 
+    const {classes} = useStyles();
+
     const catalogues = useAppSelector(state => state.catalogues.catalogues)
 
-    const [keyCatalog, setKeyCatalog] = useState<number | string>('')
-    const [payment_from, setPayment_from] = useState<number>(0)
-    const [payment_to, setPayment_to] = useState<number>(1000000)
+    const [keyCatalog, setKeyCatalog] = useState<string | null>(null)
+    const [payment_from, setPayment_from] = useState<number | ''>()
+    const [payment_to, setPayment_to] = useState<number | ''>()
 
-    const onChangeSelectHandler = (e: ChangeEvent<HTMLSelectElement>) => {
-        setKeyCatalog(+e.target.value);
+    const cataloguesForSelect = useMemo(() => {
+        if (catalogues) {
+            return catalogues.map((el) => {
+                return {value: (el.key).toString(), label: el.title}
+            });
+        }
+        return []
+    }, [catalogues])
+
+
+    const onChangeSelectHandler = (value: string | null) => {
+        setKeyCatalog(value);
     }
 
     const onChangePaymentFromHandler = (value: number) => {
@@ -24,49 +91,61 @@ export const Filter = memo(({onSetFilter}: PropsType) => {
     }
 
     const onChangePaymentToHandler = (value: number) => {
-        setPayment_to(value)
+
+        console.log('value', value)
+        // if (typeof +value === "number" && +value >= 0) {
+        setPayment_to(+value)
+        // }
     }
 
     const onClickHandler = () => {
-        onSetFilter(+keyCatalog, payment_from, payment_to)
+        onSetFilter(keyCatalog ? +keyCatalog : null, payment_from, payment_to)
     }
 
     const onClickResetFilter = () => {
         setKeyCatalog('');
-        setPayment_from(0);
-        setPayment_to(0)
-        onSetFilter(0, 0, 0)
+        setPayment_from('');
+        setPayment_to('')
+        onSetFilter(0, null, null)
     }
 
     return (
-        <div className={s.filterContainer}>
-            <div className={s.filterTop}>
-                <div className={s.title}>Фильтры</div>
+        <Paper className={s.filterContainer}>
+
+            <Box className={s.filterTop}>
+                <Text fz="lg" fw={700} color={"#232134"}>Фильтры</Text>
                 <button className={s.reset} onClick={onClickResetFilter}>Сбросить все x</button>
-            </div>
-            <div className={s.filterSettings}>
-                <div className={s.title}>Отрасль</div>
-                <select className={s.input} onChange={onChangeSelectHandler}>
-                    <option value="" disabled selected>Выберете отрасль</option>
-                    {catalogues && catalogues.map((el, index) => {
-                        return <option value={el.key}>{el.title}</option>
-                    })}
-                </select>
-            </div>
-            <div className={s.filterSettings}>
-                <div className={s.title}>Оклад</div>
-                <input className={s.input}
-                       value={payment_from}
-                       onChange={(e) => onChangePaymentFromHandler(+e.currentTarget.value)}
-                       placeholder={"от"}
-                       type={"number"}/>
-                <input className={s.input}
-                       value={payment_to}
-                       onChange={(e) => onChangePaymentToHandler(+e.currentTarget.value)}
-                       placeholder={"до"}
-                       type={"number"}/>
-            </div>
-            <button className={s.buttonApply} onClick={onClickHandler}>Применить</button>
-        </div>
+            </Box>
+
+            <Flex direction="column">
+                <Text fz="md" fw={700} color={"#232134"}>Отрасль</Text>
+
+
+                <Select className={classes.select}
+                        data={cataloguesForSelect}
+                        value={keyCatalog}
+                        onChange={onChangeSelectHandler}
+                        placeholder="Выберете отрасль"
+                        /*rightSection={<IconChevronDown size="1rem" />}*/
+                />
+            </Flex>
+
+            <Flex direction="column">
+                <Text fz="md" fw={700} color={"#232134"}>Оклад</Text>
+                <NumberInput className={classes.input}
+                             type="number"
+                             placeholder="От"
+                             value={payment_from}
+                             onChange={onChangePaymentFromHandler}
+                />
+                <NumberInput className={classes.input}
+                             type="number"
+                             placeholder="До"
+                             value={payment_to}
+                             onChange={onChangePaymentToHandler}
+                />
+            </Flex>
+            <Button className={classes.button} onClick={onClickHandler}>Применить</Button>
+        </Paper>
     );
 });

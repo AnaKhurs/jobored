@@ -46,7 +46,7 @@ export const Component = memo(() => {
         }))
     }
 
-    const onSetFilter = (catalogues: number, payment_from: number, payment_to: number) => {
+    const onSetFilter = (catalogues?: number | null, payment_from?: number | '' | null, payment_to?: number | '' | null) => {
         dispatch(getVacancies({
             ...fetchData,
             catalogues,
