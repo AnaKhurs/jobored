@@ -1,5 +1,6 @@
 export const PATH = {
-    MAIN: '/',
-    LOGIN: '/login',
-    ERROR: '*',
+    MAIN: "/",
+    FAVORITES: "/favorites",
+    LOGIN: "/login",
+    ERROR: "*",
 }

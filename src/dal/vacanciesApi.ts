@@ -37,7 +37,7 @@ export type VacancyType = {
     firm_name: string
     payment_to: number
     payment_from: number
-    currency: number
+    currency: string
     key: number
 }
 

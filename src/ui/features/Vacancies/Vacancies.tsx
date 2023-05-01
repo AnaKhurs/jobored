@@ -1,13 +1,14 @@
 import React, {memo} from "react";
 import {useAppSelector} from "../../../bll/store";
 import {Vacancy} from "./Vacancy/Vacancy";
+import {List} from "@mantine/core";
 
 export const Vacancies = memo(() => {
 
     const {vacanciesData: {vacancies}} = useAppSelector(state => state.vacancies)
 
     return (
-        <div>
+        <List>
             {vacancies && vacancies.map((el, index) => {
                 return <Vacancy key={index}
                                 profession={el.profession}
@@ -19,6 +20,6 @@ export const Vacancies = memo(() => {
                                 paymentFrom={el.payment_from}
                 />
             })}
-        </div>
+        </List>
     )
 });

@@ -1,13 +1,12 @@
 import React, {memo, useMemo, useState} from "react";
 import {useAppSelector} from "../../../bll/store";
 import {Button, Flex, NumberInput, Paper, rem, Select, Text} from "@mantine/core";
-import {IconChevronDown} from '@tabler/icons-react';
+import {IconChevronDown} from "@tabler/icons-react";
 import {useStyles} from "./styles";
 
 type PropsType = {
-    onSetFilter: (keyCatalog?: number | null, payment_from?: number | '' | null, payment_to?: number | '' | null) => void
+    onSetFilter: (keyCatalog?: number | null, payment_from?: number | "" | null, payment_to?: number | "" | null) => void
 }
-
 
 export const Filter = memo(({onSetFilter}: PropsType) => {
 
@@ -16,8 +15,8 @@ export const Filter = memo(({onSetFilter}: PropsType) => {
     const catalogues = useAppSelector(state => state.catalogues.catalogues);
 
     const [keyCatalog, setKeyCatalog] = useState<string | null>(null);
-    const [payment_from, setPayment_from] = useState<number | ''>();
-    const [payment_to, setPayment_to] = useState<number | ''>();
+    const [payment_from, setPayment_from] = useState<number | "">();
+    const [payment_to, setPayment_to] = useState<number | "">();
 
     const cataloguesForSelect = useMemo(() => {
         if (catalogues) {
@@ -26,24 +25,24 @@ export const Filter = memo(({onSetFilter}: PropsType) => {
             });
         }
         return [];
-    }, [catalogues])
+    }, [catalogues]);
 
 
     const onChangeSelectHandler = (value: string | null) => {
         setKeyCatalog(value);
-    }
+    };
 
     const onChangePaymentFromHandler = (value: number) => {
         setPayment_from(value);
-    }
+    };
 
     const onChangePaymentToHandler = (value: number) => {
         setPayment_to(value);
-    }
+    };
 
     const onClickHandler = () => {
         onSetFilter(keyCatalog ? +keyCatalog : null, payment_from, payment_to);
-    }
+    };
 
     const onClickResetFilter = () => {
         setKeyCatalog("");
@@ -55,13 +54,13 @@ export const Filter = memo(({onSetFilter}: PropsType) => {
     return (
         <Paper className={classes.wrapper}>
             <Flex justify="space-between">
-                <Text fz="lg" fw={700} color={"#232134"}>Фильтры</Text>
+                <Text fz="lg" fw={700} color="#232134">Фильтры</Text>
                 <Button className={classes.buttonReset}
                         variant="subtle"
                         onClick={onClickResetFilter}>Сбросить все x</Button>
             </Flex>
-            <Flex m={"32px 0 20px"} direction="column">
-                <Text fz="md" fw={700} color={"#232134"}>Отрасль</Text>
+            <Flex m="32px 0 20px" direction="column">
+                <Text fz="md" fw={700} color="#232134">Отрасль</Text>
                 <Select className={classes.select}
                         data={cataloguesForSelect}
                         value={keyCatalog}
@@ -72,7 +71,7 @@ export const Filter = memo(({onSetFilter}: PropsType) => {
                 />
             </Flex>
             <Flex direction="column">
-                <Text fz="md" fw={700} color={"#232134"}>Оклад</Text>
+                <Text fz="md" fw={700} color="#232134">Оклад</Text>
                 <NumberInput className={classes.input}
                              type="number"
                              placeholder="От"

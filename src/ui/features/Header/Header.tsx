@@ -1,20 +1,38 @@
 import React, {memo} from "react";
-
-import s from "./Header.module.scss"
-
-import icon from "../../../img/icon.svg";
+import {NavLink} from "react-router-dom";
+import {PATH} from "../../../utils/paths";
+import {Flex, Group} from "@mantine/core";
+import Svg from "../../../img/Svg";
 
 export const Header = memo(() => {
 
+    const styleNavigation = (isActive: boolean) => ({
+        color: isActive ? "#5E96FC" : "#232134",
+        textDecoration: "none",
+        marginRight: 60,
+    })
+
+    const data = [
+        {label: "Поиск Вакансий", path: PATH.MAIN},
+        {label: "Избранное", path: PATH.FAVORITES},
+    ];
+
+    const items = data.map((item, index) => (
+        <NavLink
+            to={item.path}
+            key={item.label}
+            style={(active) => styleNavigation(active.isActive)}
+        >{item.label}</NavLink>
+    ));
+
     return (
-        <div className={s.header}>
-            <div className={s.icon}>
-                <img src={icon} alt={"icon"}/>
-            </div>
-            <div className={s.navigation}>
-                <div className={s.navigationItem}>Поиск Вакансий</div>
-                <div className={s.navigationItem}>Избранное</div>
-            </div>
-        </div>
+        <Flex justify={"space-around"}
+              align={"center"}
+              h={84}
+              bg={"#FFFFFF"}
+              mb={40}>
+            <Svg iconName="logo"/>
+            <Group>{items}</Group>
+        </Flex>
     );
 });

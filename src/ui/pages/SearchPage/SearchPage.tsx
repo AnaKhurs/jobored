@@ -6,7 +6,7 @@ import {getVacancies} from "../../../bll/vacancies-reducer";
 import {Filter} from "../../features/Filter/Filter";
 import {Search} from "../../features/Search/Search";
 import {Vacancies} from "../../features/Vacancies/Vacancies";
-import {Pagination} from "../../features/Pagination/Pagination";
+import {PaginationComponent} from "../../features/PaginationComponent/PaginationComponent";
 import {NotAuthRedirect} from "../../../hoc/NotAuthRedirect";
 
 import s from "./SearchPage.module.scss"
@@ -53,7 +53,7 @@ export const Component = memo(() => {
             payment_from,
             payment_to,
         }))
-    }, [])
+    }, [catalogues, payment_from, payment_to])
 
     return (
         <div className={s.container}>
@@ -61,7 +61,7 @@ export const Component = memo(() => {
             <div>
                 <Search/>
                 <Vacancies/>
-                <Pagination onSetNewPage={onPageChange}/>
+                <PaginationComponent onSetNewPage={onPageChange}/>
             </div>
         </div>
     );

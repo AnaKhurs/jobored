@@ -20,7 +20,7 @@ export const useStyles = createStyles((theme) => ({
                     },
                     "& .mantine-Input-rightSection": {
                         "& > svg": {
-                            color: "#ACADB9"
+                            color: "#ACADB9",
                         }
                     }
                 },
@@ -34,9 +34,10 @@ export const useStyles = createStyles((theme) => ({
                 width: rem(275),
                 border: "1px solid #D5D6DC",
                 borderRadius: "8px",
-                marginTop:"8px",
+                marginTop: "8px",
             },
             "& .mantine-unhde.mantine-Input-rightSection.mantine-NumberInput-rightSection": {
+                marginRight: "5px",
                 "& button": {
                     border: "none",
                     color: "#ACADB9",
@@ -51,6 +52,7 @@ export const useStyles = createStyles((theme) => ({
     },
     buttonReset: {
         color: "#ACADB9",
+        padding: 0,
         "&:hover": {
             backgroundColor: "transparent",
             color: "#5E96FC",
