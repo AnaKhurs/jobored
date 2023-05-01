@@ -1,0 +1,59 @@
+import {createStyles, rem} from "@mantine/core";
+
+export const useStyles = createStyles((theme) => ({
+    wrapper: {
+        borderRadius: "12px",
+        background: "#FFFFFF",
+        border: "1px solid #EAEBED",
+        padding: "20px",
+        height: "100%",
+    },
+    select: {
+        "&.mantine-InputWrapper-root.mantine-Select-root": {
+            "& > div": {
+                "& .mantine-Input-wrapper.mantine-Select-wrapper": {
+                    "& > input": {
+                        height: rem(42),
+                        width: rem(275),
+                        border: "1px solid #D5D6DC",
+                        borderRadius: "8px",
+                    },
+                    "& .mantine-Input-rightSection": {
+                        "& > svg": {
+                            color: "#ACADB9"
+                        }
+                    }
+                },
+            },
+        }
+    },
+    input: {
+        "&.mantine-InputWrapper-root": {
+            "& input": {
+                height: rem(42),
+                width: rem(275),
+                border: "1px solid #D5D6DC",
+                borderRadius: "8px",
+                marginTop:"8px",
+            },
+            "& .mantine-unhde.mantine-Input-rightSection.mantine-NumberInput-rightSection": {
+                "& button": {
+                    border: "none",
+                    color: "#ACADB9",
+                    "&:hover": {
+                        backgroundColor: "white",
+                        cursor: "pointer",
+                        color: "#ACADB9",
+                    }
+                }
+            }
+        },
+    },
+    buttonReset: {
+        color: "#ACADB9",
+        "&:hover": {
+            backgroundColor: "transparent",
+            color: "#5E96FC",
+        }
+    },
+}));

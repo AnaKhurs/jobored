@@ -1,4 +1,4 @@
-import React, {memo, useEffect} from "react";
+import React, {memo, useCallback, useEffect} from "react";
 
 import {GetVacanciesPayloadType} from "../../../dal/vacanciesApi";
 import {useAppDispatch, useAppSelector} from "../../../bll/store";
@@ -46,14 +46,14 @@ export const Component = memo(() => {
         }))
     }
 
-    const onSetFilter = (catalogues?: number | null, payment_from?: number | '' | null, payment_to?: number | '' | null) => {
+    const onSetFilter = useCallback((catalogues?: number | null, payment_from?: number | '' | null, payment_to?: number | '' | null) => {
         dispatch(getVacancies({
             ...fetchData,
             catalogues,
             payment_from,
             payment_to,
         }))
-    }
+    }, [])
 
     return (
         <div className={s.container}>

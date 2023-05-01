@@ -17,8 +17,7 @@ const SelectDefaultProps: Partial<SelectProps> = {
 };
 
 export const globalTheme: MantineThemeOverride = {
-    // fontFamily: CSSProperties['fontFamily'],
-    // lineHeight: CSSProperties['lineHeight'],
+    fontFamily: 'Inter, sans-serif',
     colors: {
         main: [
             "#EDF2FF",
