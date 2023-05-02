@@ -36,7 +36,10 @@ const Svg: FC<Props> = ({iconName}) => {
                     d="M12.5 9.16667C12.5 10.5474 11.3807 11.6667 9.99998 11.6667C8.61927 11.6667 7.49998 10.5474 7.49998 9.16667C7.49998 7.78595 8.61927 6.66667 9.99998 6.66667C11.3807 6.66667 12.5 7.78595 12.5 9.16667Z"
                     stroke="#ACADB9" stroke-width="1.25" stroke-linecap="round" stroke-linejoin="round"/>
             </svg>
-
+        case "arrow":
+            return <svg width="6" height="10" viewBox="0 0 6 10" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M2.36705 4.99999L5.66705 1.69999L4.72405 0.756989L0.481053 4.99999L4.72405 9.24299L5.66705 8.29999L2.36705 4.99999Z" fill="#D5D6DC"/>
+            </svg>
         default:
             return <svg></svg>
     }

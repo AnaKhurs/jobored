@@ -11,6 +11,7 @@ import {NotAuthRedirect} from "../../../hoc/NotAuthRedirect";
 
 import s from "./SearchPage.module.scss"
 import {getCatalogues} from "../../../bll/catalogues-reducer";
+import {Pagination} from "../../features/PaginationComponent/Pagination";
 
 export const Component = memo(() => {
 
@@ -39,10 +40,11 @@ export const Component = memo(() => {
         dispatch(getCatalogues({}))
     }, [])
 
-    const onPageChange = (page: number) => {
+    const onPageChange = (selectedItem: { selected: number }) => {
+        const {selected} = selectedItem
         dispatch(getVacancies({
             ...fetchData,
-            page,
+            page: selected + 1,
         }))
     }
 
@@ -55,13 +57,17 @@ export const Component = memo(() => {
         }))
     }, [catalogues, payment_from, payment_to])
 
+
     return (
         <div className={s.container}>
             <Filter onSetFilter={onSetFilter}/>
             <div>
                 <Search/>
                 <Vacancies/>
-                <PaginationComponent onSetNewPage={onPageChange}/>
+                {/*                <PaginationComponent onSetNewPage={onPageChange}/>*/}
+                {/*                <NewPagination onSetNewPage={onPageChange}/>*/}
+                <Pagination onSetNewPage={onPageChange}
+                />
             </div>
         </div>
     );
