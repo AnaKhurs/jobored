@@ -38,7 +38,9 @@ const Svg: FC<Props> = ({iconName}) => {
             </svg>
         case "arrow":
             return <svg width="6" height="10" viewBox="0 0 6 10" fill="none" xmlns="http://www.w3.org/2000/svg">
-                <path d="M2.36705 4.99999L5.66705 1.69999L4.72405 0.756989L0.481053 4.99999L4.72405 9.24299L5.66705 8.29999L2.36705 4.99999Z" fill="#D5D6DC"/>
+                <path
+                    d="M2.36705 4.99999L5.66705 1.69999L4.72405 0.756989L0.481053 4.99999L4.72405 9.24299L5.66705 8.29999L2.36705 4.99999Z"
+                    fill="#D5D6DC"/>
             </svg>
         default:
             return <svg></svg>

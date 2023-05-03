@@ -1,9 +1,8 @@
 import React from "react";
 import ReactPaginate from "react-paginate";
 import {useAppSelector} from "../../../bll/store";
-
-import s from "./Pagination.module.scss"
 import Svg from "../../../img/Svg";
+import s from "./Pagination.module.scss"
 
 type PropsType = {
     onSetNewPage: (selectedItem: { selected: number }) => void
@@ -18,27 +17,24 @@ export const Pagination = ({onSetNewPage}: PropsType) => {
         }
     } = useAppSelector(state => state.vacancies);
 
-    const count = Math.ceil(total / pageCount);
+    const count = Math.ceil(total / pageCount);//toDo
 
     return (
         <ReactPaginate className={s.pagination}
+                       onPageChange={onSetNewPage}
                        breakLabel="..."
                        nextLabel={<Svg iconName="arrow"/>}
-                       onPageChange={onSetNewPage}
                        pageRangeDisplayed={3}
+                       marginPagesDisplayed={1}
                        pageCount={count}
                        previousLabel={<Svg iconName="arrow"/>}
                        renderOnZeroPageCount={null}
-                       containerClassName={s.containerClassName}
                        pageClassName={s.pageClassName}
-            /*pageLinkClassName={s.pageLinkClassName}*/
                        activeClassName={s.activeClassName}
                        previousClassName={s.previousClassName}
                        nextClassName={s.nextClassName}
-            /*                       previousLinkClassName={s.previousLinkClassName}*/
                        disabledClassName={s.disabledClassName}
                        breakClassName={s.breakClassName}
-
         />
     );
 };

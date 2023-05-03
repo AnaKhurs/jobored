@@ -6,12 +6,11 @@ import {getVacancies} from "../../../bll/vacancies-reducer";
 import {Filter} from "../../features/Filter/Filter";
 import {Search} from "../../features/Search/Search";
 import {Vacancies} from "../../features/Vacancies/Vacancies";
-import {PaginationComponent} from "../../features/PaginationComponent/PaginationComponent";
 import {NotAuthRedirect} from "../../../hoc/NotAuthRedirect";
 
 import s from "./SearchPage.module.scss"
 import {getCatalogues} from "../../../bll/catalogues-reducer";
-import {Pagination} from "../../features/PaginationComponent/Pagination";
+import {Pagination} from "../../features/Pagination/Pagination";
 
 export const Component = memo(() => {
 
@@ -64,8 +63,6 @@ export const Component = memo(() => {
             <div>
                 <Search/>
                 <Vacancies/>
-                {/*                <PaginationComponent onSetNewPage={onPageChange}/>*/}
-                {/*                <NewPagination onSetNewPage={onPageChange}/>*/}
                 <Pagination onSetNewPage={onPageChange}
                 />
             </div>
