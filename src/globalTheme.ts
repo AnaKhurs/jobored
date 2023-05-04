@@ -1,6 +1,4 @@
 import {ButtonProps, MantineThemeOverride, SelectProps} from "@mantine/core";
-import {MantineSize} from "@mantine/styles";
-import {CSSProperties} from "react";
 
 /*const big: MantineSize = {'big': {
     height: 200
@@ -8,16 +6,16 @@ import {CSSProperties} from "react";
 
 const ButtonDefaultProps: Partial<ButtonProps> = {
     /*    size: big,*/
-    color: 'main',
+    color: "main",
     radius: "8px",
 };
 const SelectDefaultProps: Partial<SelectProps> = {
-    color: 'main',
+    color: "main",
     radius: "8px",
 };
 
 export const globalTheme: MantineThemeOverride = {
-    fontFamily: 'Inter, sans-serif',
+    fontFamily: "Inter, sans-serif",
     colors: {
         main: [
             "#EDF2FF",
@@ -32,12 +30,12 @@ export const globalTheme: MantineThemeOverride = {
         ]
     },
     fontSizes: {
-        sm: '0.875rem',
-        md: '1rem',
-        lg: '1.25rem',
-        xl: '1.5rem',
+        sm: "0.875rem",
+        md: "1rem",
+        lg: "1.25rem",
+        xl: "1.5rem",
     },
-    primaryColor: 'main',
+    primaryColor: "main",
     components: {
         Button: {
             defaultProps: ButtonDefaultProps
