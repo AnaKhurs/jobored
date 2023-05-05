@@ -3,14 +3,12 @@ import {instance} from './instance';
 export type GetVacanciesPayloadType = {
     published?: number,
     keyword?: string,
-    payment_from?: number,
-    payment_to?: number,
-    catalogues?: number,
-    key?: number,
+    payment_from?: number | '' | null,
+    payment_to?: number | '' | null,
+    catalogues?: number | null,
+    no_agreement?: number,//toDo
     page?: number,
     count?: number,
-
-
 };
 
 export const vacanciesApi = {
@@ -28,13 +26,13 @@ export const vacanciesApi = {
 
 export type VacancyType = {
     profession: string
-    type_of_work: {
-        title: string
-    }
+    firm_name: string
     town: {
         title: string
     }
-    firm_name: string
+    type_of_work: {
+        title: string
+    }
     payment_to: number
     payment_from: number
     currency: string

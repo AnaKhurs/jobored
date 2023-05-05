@@ -13,11 +13,14 @@ export const Pagination = ({onSetNewPage}: PropsType) => {
     const {
         vacanciesData: {
             total,
-            pageCount,
+            count,
+            page,
         }
     } = useAppSelector(state => state.vacancies);
 
-    const count = Math.ceil(total / pageCount);//toDo
+    const totalPages = total >= 500 ? 500 : total;
+    const pageCount = Math.ceil(totalPages / count);
+    const forcePage = page - 1;
 
     return (
         <ReactPaginate className={s.pagination}
@@ -26,9 +29,10 @@ export const Pagination = ({onSetNewPage}: PropsType) => {
                        nextLabel={<Svg iconName="arrow"/>}
                        pageRangeDisplayed={3}
                        marginPagesDisplayed={1}
-                       pageCount={count}
+                       pageCount={pageCount}
                        previousLabel={<Svg iconName="arrow"/>}
                        renderOnZeroPageCount={null}
+                       forcePage={forcePage}
                        pageClassName={s.pageClassName}
                        activeClassName={s.activeClassName}
                        previousClassName={s.previousClassName}
