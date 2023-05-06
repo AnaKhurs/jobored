@@ -79,7 +79,6 @@ export const Filter = memo(({onSetFilter}: PropsType) => {
                              min={0}
                              value={payment_from}
                              onChange={onChangePaymentFromHandler}
-
                 />
                 <NumberInput className={classes.input}
                              type="number"

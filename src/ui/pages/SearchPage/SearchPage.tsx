@@ -1,5 +1,4 @@
 import React, {memo, useCallback, useEffect} from "react";
-
 import {GetVacanciesPayloadType} from "../../../dal/vacanciesApi";
 import {useAppDispatch, useAppSelector} from "../../../bll/store";
 import {getVacancies, setFilter, setPage, setSearchValue} from "../../../bll/vacancies-reducer";
@@ -50,7 +49,7 @@ export const SearchPage = memo(() => {
             payment_from,
             payment_to,
         }));
-    }, [fetchData]);
+    }, [dispatch, fetchData]);
 
     const onSetSearch = useCallback((keyword: string) => {
         dispatch(setSearchValue(keyword));
@@ -58,7 +57,7 @@ export const SearchPage = memo(() => {
             ...fetchData,
             keyword,
         }));
-    }, [fetchData]);
+    }, [dispatch, fetchData]);
 
     const onPageChange = useCallback((selectedItem: { selected: number }) => {
         const {selected} = selectedItem;
@@ -67,7 +66,7 @@ export const SearchPage = memo(() => {
             ...fetchData,
             page: selected + 1,
         }));
-    }, [fetchData]);
+    }, [dispatch, fetchData]);
 
     return (
         <Flex justify="space-evenly">
