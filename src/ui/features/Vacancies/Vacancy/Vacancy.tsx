@@ -1,4 +1,4 @@
-import React, {memo, useState} from "react";
+import React, {memo} from "react";
 import {Flex, Group, List, Text} from "@mantine/core";
 import Svg from "../../../../img/Svg";
 import {useStyles} from "./styles";

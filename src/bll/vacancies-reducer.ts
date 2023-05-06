@@ -51,7 +51,7 @@ const vacanciesSlice = createSlice({
                     state.vacanciesData.vacancies = [...action.payload.objects]
                     state.vacanciesData.total = action.payload.total
                     state.isLoaded = true
-                };
+                }
             });
         }
     },
