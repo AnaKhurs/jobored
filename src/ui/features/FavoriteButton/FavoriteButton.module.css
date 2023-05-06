@@ -1,0 +1,12 @@
+.active {
+    background-color: yellow;
+    color: red;
+    stroke: #5E96FC;
+    fill: #5E96FC;
+}
+
+.inactive {
+    color: red;
+    stroke: #EAEBED;
+    fill: #EAEBED;
+}

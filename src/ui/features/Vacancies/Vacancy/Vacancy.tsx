@@ -1,7 +1,8 @@
-import React, {memo} from "react";
+import React, {memo, useState} from "react";
 import {Flex, Group, List, Text} from "@mantine/core";
 import Svg from "../../../../img/Svg";
 import {useStyles} from "./styles";
+import {FavoriteButton} from "../../FavoriteButton/FavoriteButton";
 
 type PropsType = {
     profession: string
@@ -47,7 +48,7 @@ export const Vacancy = memo(({
                 <Text fz="lg"
                       fw={600}
                       color="#5E96FC">{profession}</Text>
-                <Svg iconName="star"/>
+                <FavoriteButton/>
             </Flex>
             <Group m="13px 0">
                 <Text fz="md"
