@@ -5,11 +5,10 @@ import {PATH} from "../utils/paths";
 
 export const NotAuthRedirect = (Component: React.FC) => {
     function NewComponent(props: any) {
-        const {isLoggedIn} = useAppSelector(state => state.login)
-        if (!isLoggedIn) {
-            return <Navigate to={PATH.LOGIN}/>
+        const {isInitialized} = useAppSelector(state => state.app);
+        if (!isInitialized) {
+            return <Navigate to={PATH.LOGIN}/>; //toDo
         } else return <Component {...props}/>;
     }
-
     return NewComponent
-}
+};
