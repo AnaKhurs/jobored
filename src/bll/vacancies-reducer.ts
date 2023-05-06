@@ -5,10 +5,10 @@ import {vacanciesApi, VacancyType} from "../dal/vacanciesApi";
 type VacanciesDataType = {
     vacancies: VacancyType[]
     published: number
-    keyword: string
-    payment_to: number | "" | null | undefined
-    payment_from: number | "" | null | undefined
-    catalogues: null | number | undefined
+    keyword: string | undefined
+    payment_to: number | "" | undefined
+    payment_from: number | "" | undefined
+    catalogues: number | undefined
     no_agreement: number
     total: number
     page: number
@@ -21,25 +21,28 @@ const vacanciesSlice = createSlice({
             vacanciesData: {
                 vacancies: [],
                 published: 1,
-                keyword: "",
-                payment_to: null,
-                payment_from: null,
-                catalogues: null,
+                keyword: undefined,
+                payment_to: undefined,
+                payment_from: undefined,
+                catalogues: undefined,
                 no_agreement: 1, //toDo
                 total: 0,
-                page: 1, //toDo
+                page: 1,
                 count: 4,
             } as VacanciesDataType,
             isLoaded: false,
         },
         reducers: {
-            setFilter(state, action: PayloadAction<{ payment_to?: number | '' | null, payment_from?: number | '' | null, catalogues?: number | null }>) {
+            setFilter(state, action: PayloadAction<{ payment_to?: number | '', payment_from?: number | '', catalogues?: number }>) {
                 state.vacanciesData.payment_to = action.payload.payment_to; //toDo
                 state.vacanciesData.payment_from = action.payload.payment_from;
                 state.vacanciesData.catalogues = action.payload.catalogues;
             },
             setPage(state, action: PayloadAction<number>) {
                 state.vacanciesData.page = action.payload;
+            },
+            setSearchValue(state, action: PayloadAction<string>) {
+                state.vacanciesData.keyword = action.payload
             },
         },
         extraReducers: builder => {
@@ -48,7 +51,8 @@ const vacanciesSlice = createSlice({
                     state.vacanciesData.vacancies = [...action.payload.objects]
                     state.vacanciesData.total = action.payload.total
                     state.isLoaded = true
-                };
+                }
+                ;
             });
         }
     },
@@ -76,5 +80,5 @@ export const getVacancies = createAsyncThunk(
 );
 
 export const vacanciesReducer = vacanciesSlice.reducer;
-export const {setFilter, setPage} = vacanciesSlice.actions;
+export const {setFilter, setPage, setSearchValue,} = vacanciesSlice.actions;
 

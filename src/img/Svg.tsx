@@ -42,6 +42,14 @@ const Svg: FC<Props> = ({iconName}) => {
                     d="M2.36705 4.99999L5.66705 1.69999L4.72405 0.756989L0.481053 4.99999L4.72405 9.24299L5.66705 8.29999L2.36705 4.99999Z"
                     fill="#D5D6DC"/>
             </svg>
+        case "search":
+            return <svg xmlns="http://www.w3.org/2000/svg" className="icon icon-tabler icon-tabler-search" width="24"
+                        height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none"
+                        stroke-linecap="round" stroke-linejoin="round">
+                <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
+                <path d="M10 10m-7 0a7 7 0 1 0 14 0a7 7 0 1 0 -14 0"/>
+                <path d="M21 21l-6 -6"/>
+            </svg>
         default:
             return <svg></svg>
     }

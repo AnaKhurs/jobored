@@ -1,8 +1,6 @@
 import React, {memo} from "react";
 
-import {NotAuthRedirect} from "../../../hoc/NotAuthRedirect";
-
-const Component = memo(() => {
+export const FavoritesPage = memo(() => {
 
     return (
         <div>
@@ -10,5 +8,3 @@ const Component = memo(() => {
         </div>
     );
 });
-
-export const FavoritesPage = NotAuthRedirect(Component);

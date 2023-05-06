@@ -2,17 +2,15 @@ import React, {memo, useCallback, useEffect} from "react";
 
 import {GetVacanciesPayloadType} from "../../../dal/vacanciesApi";
 import {useAppDispatch, useAppSelector} from "../../../bll/store";
-import {getVacancies, setFilter, setPage} from "../../../bll/vacancies-reducer";
+import {getVacancies, setFilter, setPage, setSearchValue} from "../../../bll/vacancies-reducer";
 import {getCatalogues} from "../../../bll/catalogues-reducer";
 import {Filter} from "../../features/Filter/Filter";
 import {Search} from "../../features/Search/Search";
 import {Vacancies} from "../../features/Vacancies/Vacancies";
 import {Pagination} from "../../features/Pagination/Pagination";
-import {NotAuthRedirect} from "../../../hoc/NotAuthRedirect";
+import {Box, Flex} from "@mantine/core";
 
-import s from "./SearchPage.module.scss"
-
-export const Component = memo(() => {
+export const SearchPage = memo(() => {
 
     const dispatch = useAppDispatch();
 
@@ -24,6 +22,7 @@ export const Component = memo(() => {
             payment_from,
             catalogues,
             no_agreement,
+            keyword,
         }
     } = useAppSelector(state => state.vacancies);
 
@@ -34,23 +33,15 @@ export const Component = memo(() => {
         payment_to,
         payment_from,
         no_agreement,
+        keyword,
     };
 
     useEffect(() => {
         dispatch(getVacancies(fetchData))
         dispatch(getCatalogues({}))
-    }, []);//toDo
+    }, []);
 
-    const onPageChange = (selectedItem: { selected: number }) => {
-        const {selected} = selectedItem;
-        dispatch(setPage(selected + 1));
-        dispatch(getVacancies({
-            ...fetchData,
-            page: selected + 1,
-        }));
-    };
-
-    const onSetFilter = useCallback((catalogues?: number | null, payment_from?: number | '' | null, payment_to?: number | '' | null) => {
+    const onSetFilter = useCallback((catalogues?: number, payment_from?: number | '', payment_to?: number | '') => {
         dispatch(setFilter({payment_to, payment_from, catalogues}));
         dispatch(setPage(1));
         dispatch(getVacancies({
@@ -59,19 +50,33 @@ export const Component = memo(() => {
             payment_from,
             payment_to,
         }));
-    }, [catalogues, payment_from, payment_to]);
+    }, [fetchData]);
+
+    const onSetSearch = useCallback((keyword: string) => {
+        dispatch(setSearchValue(keyword));
+        dispatch(getVacancies({
+            ...fetchData,
+            keyword,
+        }));
+    }, [fetchData]);
+
+    const onPageChange = useCallback((selectedItem: { selected: number }) => {
+        const {selected} = selectedItem;
+        dispatch(setPage(selected + 1));
+        dispatch(getVacancies({
+            ...fetchData,
+            page: selected + 1,
+        }));
+    }, [fetchData]);
 
     return (
-        <div className={s.container}>
+        <Flex justify="space-evenly">
             <Filter onSetFilter={onSetFilter}/>
-            <div>
-                <Search/>
+            <Box>
+                <Search onSetSearch={onSetSearch}/>
                 <Vacancies/>
-                <Pagination onSetNewPage={onPageChange}
-                />
-            </div>
-        </div>
+                <Pagination onSetNewPage={onPageChange}/>
+            </Box>
+        </Flex>
     );
 });
-
-export const SearchPage = NotAuthRedirect(Component);

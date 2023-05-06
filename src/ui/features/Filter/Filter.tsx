@@ -5,7 +5,7 @@ import {IconChevronDown} from "@tabler/icons-react";
 import {useStyles} from "./styles";
 
 type PropsType = {
-    onSetFilter: (keyCatalog?: number | null, payment_from?: number | "" | null, payment_to?: number | "" | null) => void
+    onSetFilter: (keyCatalog?: number, payment_from?: number | "", payment_to?: number | "") => void
 }
 
 export const Filter = memo(({onSetFilter}: PropsType) => {
@@ -14,7 +14,7 @@ export const Filter = memo(({onSetFilter}: PropsType) => {
 
     const catalogues = useAppSelector(state => state.catalogues.catalogues);
 
-    const [keyCatalog, setKeyCatalog] = useState<string | null>(null);
+    const [keyCatalog, setKeyCatalog] = useState<string>();
     const [payment_from, setPayment_from] = useState<number | "">();
     const [payment_to, setPayment_to] = useState<number | "">();
 
@@ -28,7 +28,7 @@ export const Filter = memo(({onSetFilter}: PropsType) => {
     }, [catalogues]);
 
 
-    const onChangeSelectHandler = (value: string | null) => {
+    const onChangeSelectHandler = (value: string) => {
         setKeyCatalog(value);
     };
 
@@ -41,14 +41,15 @@ export const Filter = memo(({onSetFilter}: PropsType) => {
     };
 
     const onClickHandler = () => {
-        onSetFilter(keyCatalog ? +keyCatalog : null, payment_from, payment_to);
+        const catalogues = keyCatalog ? +keyCatalog : undefined;
+        onSetFilter(catalogues, payment_from, payment_to);
     };
 
     const onClickResetFilter = () => {
         setKeyCatalog("");
         setPayment_from("");
         setPayment_to("");
-        onSetFilter(0, null, null);
+        onSetFilter(undefined, undefined, undefined);
     }
 
     return (

@@ -21,5 +21,5 @@ export type RootStateType = ReturnType<typeof reducers>
 export const useAppSelector: TypedUseSelectorHook<RootStateType> = useSelector
 export const useAppDispatch = () => useDispatch<typeof store.dispatch>()
 
-//@ts-ignore
+//@ts-ignore //todo
 window.store = store
