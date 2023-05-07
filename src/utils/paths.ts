@@ -3,4 +3,5 @@ export const PATH = {
     FAVORITES: "/favorites",
     LOGIN: "/login",
     ERROR: "*",
+    VACANCY: "/vacancy",
 }

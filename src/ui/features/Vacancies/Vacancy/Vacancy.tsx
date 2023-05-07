@@ -1,18 +1,23 @@
 import React, {memo} from "react";
+import {useNavigate} from "react-router-dom";
+import {useAppDispatch} from "../../../../bll/store";
+import {getVacancy, setIdVacancy} from "../../../../bll/vacancy-reducer";
 import {FavoriteButton} from "../../FavoriteButton/FavoriteButton";
-import {Flex, Group, List, Text} from "@mantine/core";
+import {Flex, Group, Paper, Text, Anchor} from "@mantine/core";
+import {PATH} from "../../../../utils/paths";
 import Svg from "../../../../img/Svg";
 import {useStyles} from "./styles";
 
 type PropsType = {
-    profession: string
+    profession?: string
     firmName?: string
-    townTitle: string
+    townTitle?: string
     cataloguesTitle?: string
     typeOfWork: string
     paymentTo?: number
     paymentFrom?: number
     currency?: string
+    id?: number
 }
 
 export const Vacancy = memo(({
@@ -22,9 +27,19 @@ export const Vacancy = memo(({
                                  paymentTo,
                                  paymentFrom,
                                  currency,
+                                 id,
                              }: PropsType) => {
 
     const {classes} = useStyles();
+
+    const dispatch = useAppDispatch();
+    const navigate = useNavigate();
+
+    const navigateToVacancyPage = (id: number) => {
+        dispatch(setIdVacancy(id));
+        dispatch(getVacancy({id}));
+        navigate(PATH.VACANCY + `/${id}`);
+    };
 
     const getCurrencyDescription = (paymentFrom?: number, paymentTo?: number, currency?: string) => {
         if (paymentFrom && paymentTo && currency) {
@@ -40,14 +55,20 @@ export const Vacancy = memo(({
             return `з/п до ${paymentTo} ${currency}`
         }
         return ""
-    }
+    };
 
     return (
-        <List className={classes.wrapper}>
+        <Paper className={classes.wrapper}>
             <Flex justify="space-between" align="center">
-                <Text fz="lg"
-                      fw={600}
-                      color="#5E96FC">{profession}</Text>
+                {id ?
+                    <Anchor fz="lg"
+                          fw={600}
+                          color="#5E96FC" onClick={() => navigateToVacancyPage(id)}>{profession}</Anchor>
+                    :
+                    <Text fz="xl"
+                          fw={700}
+                          color="#232134">{profession}</Text>
+                }
                 <FavoriteButton/>
             </Flex>
             <Group m="13px 0">
@@ -64,6 +85,6 @@ export const Vacancy = memo(({
                 <Svg iconName="location"/>
                 <Text>{townTitle}</Text>
             </Group>
-        </List>
+        </Paper>
     );
 });

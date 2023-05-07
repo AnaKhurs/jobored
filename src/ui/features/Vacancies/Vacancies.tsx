@@ -18,6 +18,7 @@ export const Vacancies = memo(() => {
                                 currency={el.currency}
                                 paymentTo={el.payment_to}
                                 paymentFrom={el.payment_from}
+                                id={el.id}
                 />
             })}
         </Box>

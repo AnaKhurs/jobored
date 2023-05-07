@@ -5,9 +5,10 @@ import {initializeApp} from "./bll/app-reducer";
 import {Header} from "./ui/features/Header/Header";
 import {SearchPage} from "./ui/pages/SearchPage/SearchPage";
 import {FavoritesPage} from "./ui/pages/FavoritesPage/FavoritesPage";
+import {VacancyPage} from "./ui/pages/VacancyPage/VacancyPage";
 import {PATH} from "./utils/paths";
 import {client_id, client_secret, hr, login, password} from "./loginData"; //todo
-import {Loader, Box, Flex} from '@mantine/core';
+import {Box, Flex, Loader} from '@mantine/core';
 
 function App() {
 
@@ -34,6 +35,7 @@ function App() {
             <Routes>
                 <Route path={PATH.MAIN} element={<SearchPage/>}/>
                 <Route path={PATH.FAVORITES} element={<FavoritesPage/>}/>
+                <Route path={PATH.VACANCY + '/:idVacancy'} element={<VacancyPage/>}/>
             </Routes>
         </Box>
     );
