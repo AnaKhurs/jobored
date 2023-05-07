@@ -1,8 +1,8 @@
 import React, {memo} from "react";
+import {FavoriteButton} from "../../FavoriteButton/FavoriteButton";
 import {Flex, Group, List, Text} from "@mantine/core";
 import Svg from "../../../../img/Svg";
 import {useStyles} from "./styles";
-import {FavoriteButton} from "../../FavoriteButton/FavoriteButton";
 
 type PropsType = {
     profession: string
