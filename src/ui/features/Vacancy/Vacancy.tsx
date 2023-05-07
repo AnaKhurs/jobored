@@ -1,11 +1,11 @@
 import React, {memo} from "react";
 import {useNavigate} from "react-router-dom";
-import {useAppDispatch} from "../../../../bll/store";
-import {getVacancy, setIdVacancy} from "../../../../bll/vacancy-reducer";
-import {FavoriteButton} from "../../FavoriteButton/FavoriteButton";
+import {useAppDispatch} from "../../../bll/store";
+import {getVacancy, setIdVacancy} from "../../../bll/vacancy-reducer";
+import {FavoriteButton} from "../FavoriteButton/FavoriteButton";
 import {Flex, Group, Paper, Text, Anchor} from "@mantine/core";
-import {PATH} from "../../../../utils/paths";
-import Svg from "../../../../img/Svg";
+import {PATH} from "../../../utils/paths";
+import Svg from "../../../img/Svg";
 import {useStyles} from "./styles";
 
 type PropsType = {
@@ -62,8 +62,8 @@ export const Vacancy = memo(({
             <Flex justify="space-between" align="center">
                 {id ?
                     <Anchor fz="lg"
-                          fw={600}
-                          color="#5E96FC" onClick={() => navigateToVacancyPage(id)}>{profession}</Anchor>
+                            fw={600}
+                            color="#5E96FC" onClick={() => navigateToVacancyPage(id)}>{profession}</Anchor>
                     :
                     <Text fz="xl"
                           fw={700}

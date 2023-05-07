@@ -1,11 +1,6 @@
 import {ButtonProps, MantineThemeOverride, SelectProps} from "@mantine/core";
 
-/*const big: MantineSize = {'big': {
-    height: 200
-}}*/
-
 const ButtonDefaultProps: Partial<ButtonProps> = {
-    /*    size: big,*/
     color: "main",
     radius: "8px",
 };

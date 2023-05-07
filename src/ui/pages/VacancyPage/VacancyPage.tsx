@@ -2,7 +2,7 @@ import React, {memo} from "react";
 import {useParams} from "react-router-dom";
 import {useAppDispatch, useAppSelector} from "../../../bll/store";
 import {getVacancy} from "../../../bll/vacancy-reducer";
-import {Vacancy} from "../../features/Vacancies/Vacancy/Vacancy";
+import {Vacancy} from "../../features/Vacancy/Vacancy";
 import {Flex, Loader, Paper} from "@mantine/core";
 import {useStyles} from "./styles";
 

@@ -1,6 +1,5 @@
 import {createAsyncThunk, createSlice} from "@reduxjs/toolkit";
 import {setAppError, setAppStatus} from "./app-reducer";
-import {vacanciesApi, VacancyType} from "../dal/vacanciesApi";
 import {CatalogType, cataloguesApi} from "../dal/cataloguesApi";
 
 const cataloguesSlice = createSlice({

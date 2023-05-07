@@ -8,7 +8,7 @@ const Svg: FC<Props> = ({iconName}) => {
     switch (iconName) {
         case "logo":
             return <svg width="141" height="36" viewBox="0 0 141 36" fill="none" xmlns="http://www.w3.org/2000/svg">
-                <path fill-rule="evenodd" clip-rule="evenodd"
+                <path fillRule="evenodd" clipRule="evenodd"
                       d="M15.039 7.81473C9.08945 3.42355 3.45945 1.72339 1.13587 4.02923C-1.18771 6.33507 0.469263 11.9779 4.81473 17.961C0.423547 23.9105 -1.27661 29.5405 1.02923 31.8641C3.33507 34.1877 8.97793 32.5307 14.9609 28.1852C20.9105 32.5764 26.5405 34.2766 28.8641 31.9708C31.1877 29.6649 29.5307 24.022 25.1852 18.039C29.5764 12.0894 31.2766 6.45942 28.9708 4.13584C26.6649 1.81225 21.022 3.46924 15.039 7.81473Z"
                       fill="#5E96FC"/>
                 <path
@@ -19,13 +19,13 @@ const Svg: FC<Props> = ({iconName}) => {
             return <svg width="22" height="20" viewBox="0 0 22 20" fill="none" xmlns="http://www.w3.org/2000/svg">
                 <path
                     d="M9.97183 1.70846C10.4382 0.933481 11.5618 0.933482 12.0282 1.70847L14.3586 5.58087C14.5262 5.85928 14.7995 6.05784 15.116 6.13116L19.5191 7.15091C20.4002 7.35499 20.7474 8.42356 20.1545 9.10661L17.1918 12.5196C16.9788 12.765 16.8744 13.0863 16.9025 13.41L17.2932 17.9127C17.3714 18.8138 16.4625 19.4742 15.6296 19.1214L11.4681 17.3583C11.1689 17.2316 10.8311 17.2316 10.5319 17.3583L6.37038 19.1214C5.53754 19.4742 4.62856 18.8138 4.70677 17.9127L5.09754 13.41C5.12563 13.0863 5.02124 12.765 4.80823 12.5196L1.8455 9.1066C1.25257 8.42356 1.59977 7.35499 2.48095 7.15091L6.88397 6.13116C7.20053 6.05784 7.47383 5.85928 7.64138 5.58087L9.97183 1.70846Z"
-                    stroke="#ACADB9" stroke-width="1.5"/>
+                    stroke="#ACADB9" strokeWidth="1.5"/>
             </svg>
         case "fillStar":
             return <svg width="22" height="20" viewBox="0 0 22 20" fill="none" xmlns="http://www.w3.org/2000/svg">
                 <path
                     d="M9.97183 1.70846C10.4382 0.933481 11.5618 0.933482 12.0282 1.70847L14.3586 5.58087C14.5262 5.85928 14.7995 6.05784 15.116 6.13116L19.5191 7.15091C20.4002 7.35499 20.7474 8.42356 20.1545 9.10661L17.1918 12.5196C16.9788 12.765 16.8744 13.0863 16.9025 13.41L17.2932 17.9127C17.3714 18.8138 16.4625 19.4742 15.6296 19.1214L11.4681 17.3583C11.1689 17.2316 10.8311 17.2316 10.5319 17.3583L6.37038 19.1214C5.53754 19.4742 4.62856 18.8138 4.70677 17.9127L5.09754 13.41C5.12563 13.0863 5.02124 12.765 4.80823 12.5196L1.8455 9.1066C1.25257 8.42356 1.59977 7.35499 2.48095 7.15091L6.88397 6.13116C7.20053 6.05784 7.47383 5.85928 7.64138 5.58087L9.97183 1.70846Z"
-                    fill="#5E96FC" stroke="#5E96FC" stroke-width="1.5"/>
+                    fill="#5E96FC" stroke="#5E96FC" strokeWidth="1.5"/>
             </svg>
         case "dot":
             return <svg width="5" height="6" viewBox="0 0 5 6" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -37,10 +37,10 @@ const Svg: FC<Props> = ({iconName}) => {
             return <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
                 <path
                     d="M14.714 13.8807C13.9335 14.6612 12.3013 16.2935 11.1781 17.4166C10.5273 18.0675 9.47304 18.0678 8.82217 17.4169C7.7186 16.3134 6.11797 14.7127 5.28593 13.8807C2.68244 11.2772 2.68244 7.05612 5.28593 4.45262C7.88943 1.84913 12.1105 1.84913 14.714 4.45262C17.3175 7.05612 17.3175 11.2772 14.714 13.8807Z"
-                    stroke="#ACADB9" stroke-width="1.25" stroke-linecap="round" stroke-linejoin="round"/>
+                    stroke="#ACADB9" strokeWidth="1.25" strokeLinecap="round" strokeLinejoin="round"/>
                 <path
                     d="M12.5 9.16667C12.5 10.5474 11.3807 11.6667 9.99998 11.6667C8.61927 11.6667 7.49998 10.5474 7.49998 9.16667C7.49998 7.78595 8.61927 6.66667 9.99998 6.66667C11.3807 6.66667 12.5 7.78595 12.5 9.16667Z"
-                    stroke="#ACADB9" stroke-width="1.25" stroke-linecap="round" stroke-linejoin="round"/>
+                    stroke="#ACADB9" strokeWidth="1.25" strokeLinecap="round" strokeLinejoin="round"/>
             </svg>
         case "arrow":
             return <svg width="6" height="10" viewBox="0 0 6 10" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -50,15 +50,15 @@ const Svg: FC<Props> = ({iconName}) => {
             </svg>
         case "search":
             return <svg xmlns="http://www.w3.org/2000/svg" className="icon icon-tabler icon-tabler-search" width="24"
-                        height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none"
-                        stroke-linecap="round" stroke-linejoin="round">
+                        height="24" viewBox="0 0 24 24" strokeWidth="2" stroke="currentColor" fill="none"
+                        strokeLinecap="round" strokeLinejoin="round">
                 <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
                 <path d="M10 10m-7 0a7 7 0 1 0 14 0a7 7 0 1 0 -14 0"/>
                 <path d="M21 21l-6 -6"/>
             </svg>
         case "void":
             return <svg width="241" height="231" viewBox="0 0 241 231" fill="none" xmlns="http://www.w3.org/2000/svg">
-                <g clip-path="url(#clip0_72_799)">
+                <g clipPath="url(#clip0_72_799)">
                     <path d="M63.1711 59.4975L96.6833 111.201L98.7886 110.344L65.2208 58.7478L63.1711 59.4975Z" fill="#3B7CD3"/>
                     <path d="M96.6028 111.447L96.5145 111.308L62.8679 59.397L65.3006 58.508L65.388 58.6395L99.0826 110.439L96.6028 111.447ZM63.4737 59.6091L96.7584 110.961L98.4893 110.26L65.1364 58.9909L63.4737 59.6091Z" fill="#3B7CD3"/>
                     <path d="M65.2217 58.7474L66.9843 58.0294L100.126 109.03L98.7896 110.342L65.2226 58.7465L65.2217 58.7474Z" fill="#DEECFF"/>

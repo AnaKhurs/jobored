@@ -17,7 +17,7 @@ export const Header = memo(() => {
         {label: "Избранное", path: PATH.FAVORITES},
     ];
 
-    const items = data.map((item, index) => (
+    const items = data.map((item) => (
         <NavLink
             to={item.path}
             key={item.label}

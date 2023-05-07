@@ -1,6 +1,6 @@
 import React, {memo} from "react";
 import {useAppSelector} from "../../../bll/store";
-import {Vacancy} from "./Vacancy/Vacancy";
+import {Vacancy} from "../Vacancy/Vacancy";
 import {Box} from "@mantine/core";
 
 export const Vacancies = memo(() => {
