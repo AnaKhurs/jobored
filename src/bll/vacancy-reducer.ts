@@ -2,7 +2,7 @@ import {createAsyncThunk, createSlice, PayloadAction} from "@reduxjs/toolkit";
 import {setAppError, setAppStatus} from "./app-reducer";
 import {vacanciesApi, VacancyType} from "../dal/vacanciesApi";
 
-const vacanciesSlice = createSlice({
+const vacancySlice = createSlice({
         name: "vacancy",
         initialState: {
             vacancy: {} as VacancyType,
@@ -46,8 +46,8 @@ export const getVacancy = createAsyncThunk(
     }
 );
 
-export const vacancyReducer = vacanciesSlice.reducer;
-export const {setIdVacancy} = vacanciesSlice.actions;
+export const vacancyReducer = vacancySlice.reducer;
+export const {setIdVacancy} = vacancySlice.actions;
 
 
 

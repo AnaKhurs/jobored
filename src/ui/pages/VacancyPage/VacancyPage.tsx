@@ -22,6 +22,7 @@ export const VacancyPage = memo(() => {
             payment_to,
             currency,
             firm_name,
+            id,
         },
         isLoaded
     } = useAppSelector(state => state.vacancy)
@@ -42,6 +43,7 @@ export const VacancyPage = memo(() => {
                      currency={currency}
                      paymentTo={payment_to}
                      paymentFrom={payment_from}
+                     id={id}
             />
             <Paper className={classes.wrapper}
                    dangerouslySetInnerHTML={{__html: vacancyRichText}} //todo

@@ -19,6 +19,7 @@ export const Vacancies = memo(() => {
                                 paymentTo={el.payment_to}
                                 paymentFrom={el.payment_from}
                                 id={el.id}
+                                isTitleLink={true}
                 />
             })}
         </Box>

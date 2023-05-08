@@ -1,22 +1,17 @@
-import React, {memo, useState} from "react";
+import React, {memo} from "react";
 import Svg from "../../../img/Svg";
 import {Group} from "@mantine/core";
-import s from './FavoriteButton.module.css'
 
-type PropsType = {}
+type PropsType = {
+    isFavorite: boolean
+    toggleFavorite: () => void
+}
 
-export const FavoriteButton = memo(({}: PropsType) => {
-
-    const [active, setActive] = useState<boolean>(false)
-
-    const onClickHandler = () => {
-        setActive(!active)
-        //localStorage.setItem("favorite", "fav") //todo
-    }
+export const FavoriteButton = memo(({isFavorite, toggleFavorite}: PropsType) => {
 
     return (
-        <Group onClick={onClickHandler}>
-            {active ? <Svg iconName="fillStar"/> : <Svg iconName="outlineStar"/>}
+        <Group onClick={toggleFavorite}>
+            {isFavorite ? <Svg iconName="fillStar"/> : <Svg iconName="outlineStar"/>}
         </Group>
     );
 });
