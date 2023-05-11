@@ -2,10 +2,13 @@ import React, {memo} from "react";
 import {useAppSelector} from "../../../bll/store";
 import {Vacancy} from "../Vacancy/Vacancy";
 import {Box} from "@mantine/core";
+import {VacancyType} from "../../../dal/vacanciesApi";
 
-export const Vacancies = memo(() => {
+type PropsType = {
+    vacancies: VacancyType[]
+}
 
-    const {vacanciesData: {vacancies}} = useAppSelector(state => state.vacancies)
+export const Vacancies = memo(({vacancies}: PropsType) => {
 
     return (
         <Box>

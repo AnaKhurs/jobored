@@ -6,21 +6,23 @@ import s from "./Pagination.module.scss"
 
 type PropsType = {
     onSetNewPage: (selectedItem: { selected: number }) => void
+    pageCount: number
+    forcePage: number
 }
 
-export const Pagination = ({onSetNewPage}: PropsType) => {
+export const Pagination = ({onSetNewPage, pageCount, forcePage}: PropsType) => {
 
-    const {
-        vacanciesData: {
-            total,
-            count,
-            page,
-        }
-    } = useAppSelector(state => state.vacancies);
+    /*    const {
+            vacanciesData: {
+                total,
+                count,
+                page,
+            }
+        } = useAppSelector(state => state.vacancies);
 
-    const totalPages = total >= 500 ? 500 : total;
-    const pageCount = Math.ceil(totalPages / count);
-    const forcePage = page - 1;
+        const totalPages = total >= 500 ? 500 : total;
+        const pageCount = Math.ceil(totalPages / count);
+        const forcePage = page - 1;*/
 
     return (
         <ReactPaginate className={s.pagination}

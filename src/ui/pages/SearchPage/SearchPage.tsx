@@ -22,6 +22,7 @@ export const SearchPage = memo(() => {
             catalogues,
             no_agreement,
             keyword,
+            total,
         }
     } = useAppSelector(state => state.vacancies);
 
@@ -68,13 +69,27 @@ export const SearchPage = memo(() => {
         }));
     }, [dispatch, fetchData]);
 
+    const {vacanciesData: {vacancies}} = useAppSelector(state => state.vacancies)
+
+    /*        const {
+            vacanciesData: {
+                total,
+                count,
+                page,
+            }
+        } = useAppSelector(state => state.vacancies);*/
+
+    const totalPages = total >= 500 ? 500 : total;
+    const pageCount = Math.ceil(totalPages / count);
+    const forcePage = page - 1;
+
     return (
         <Flex justify="space-evenly">
             <Filter onSetFilter={onSetFilter}/>
             <Box>
                 <Search onSetSearch={onSetSearch}/>
-                <Vacancies/>
-                <Pagination onSetNewPage={onPageChange}/>
+                <Vacancies vacancies={vacancies}/>
+                <Pagination onSetNewPage={onPageChange} forcePage={forcePage} pageCount={pageCount}/>
             </Box>
         </Flex>
     );
