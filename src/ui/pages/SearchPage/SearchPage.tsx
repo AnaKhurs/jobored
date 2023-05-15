@@ -1,4 +1,4 @@
-import React, {memo, useCallback, useEffect} from "react";
+import React, {memo, useCallback, useEffect, useMemo} from "react";
 import {GetVacanciesPayloadType} from "../../../dal/vacanciesApi";
 import {useAppDispatch, useAppSelector} from "../../../bll/store";
 import {getVacancies, setFilter, setPage, setSearchValue} from "../../../bll/vacancies-reducer";
@@ -26,20 +26,22 @@ export const SearchPage = memo(() => {
         }
     } = useAppSelector(state => state.vacancies);
 
-    const fetchData: GetVacanciesPayloadType = {
-        page,
-        count,
-        catalogues,
-        payment_to,
-        payment_from,
-        no_agreement,
-        keyword,
-    };
+    const fetchData: GetVacanciesPayloadType = useMemo(() => {
+        return {
+            page,
+            count,
+            catalogues,
+            payment_to,
+            payment_from,
+            no_agreement,
+            keyword,
+        };
+    }, [catalogues, count, keyword, no_agreement, page, payment_from, payment_to])
 
     useEffect(() => {
         dispatch(getVacancies(fetchData))
         dispatch(getCatalogues({}))
-    }, []);
+    }, [dispatch, fetchData]);
 
     const onSetFilter = useCallback((catalogues?: number, payment_from?: number | '', payment_to?: number | '') => {
         dispatch(setFilter({payment_to, payment_from, catalogues}));
@@ -71,15 +73,7 @@ export const SearchPage = memo(() => {
 
     const {vacanciesData: {vacancies}} = useAppSelector(state => state.vacancies)
 
-    /*        const {
-            vacanciesData: {
-                total,
-                count,
-                page,
-            }
-        } = useAppSelector(state => state.vacancies);*/
-
-    const totalPages = total >= 500 ? 500 : total;
+    const totalPages = total >= 500 ? 500 : total; //todo
     const pageCount = Math.ceil(totalPages / count);
     const forcePage = page - 1;
 

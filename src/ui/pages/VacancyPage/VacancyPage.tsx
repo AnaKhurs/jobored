@@ -1,10 +1,12 @@
-import React, {memo} from "react";
+import React, {memo, useEffect, useState} from "react";
 import {useParams} from "react-router-dom";
 import {useAppDispatch, useAppSelector} from "../../../bll/store";
 import {getVacancy} from "../../../bll/vacancy-reducer";
 import {Vacancy} from "../../features/Vacancy/Vacancy";
 import {Flex, Loader, Paper} from "@mantine/core";
 import {useStyles} from "./styles";
+import {VacancyType} from "../../../dal/vacanciesApi";
+import {getFavorites} from "../../../utils/serviseFavorite";
 
 export const VacancyPage = memo(() => {
 
@@ -13,19 +15,21 @@ export const VacancyPage = memo(() => {
     const dispatch = useAppDispatch();
     const {idVacancy} = useParams();
     const {
-        vacancy: {
-            vacancyRichText,
-            profession,
-            town,
-            type_of_work,
-            payment_from,
-            payment_to,
-            currency,
-            firm_name,
-            id,
-        },
+        vacancy,
         isLoaded
     } = useAppSelector(state => state.vacancy)
+
+    const [vacancyWithFavorites, setVacancyWithFavorites] = useState<VacancyType>(vacancy)
+
+    useEffect(() => {
+        const favorites: VacancyType[] = getFavorites();
+        setVacancyWithFavorites(
+            favorites.some((f) => vacancy.id === f.id) ? {...vacancy, favorite: true} : vacancy)
+    }, [vacancy])
+
+    const rerenderVacancyWithFavorite = (id: number, favorite: boolean) => {
+        setVacancyWithFavorites({...vacancy, favorite: favorite})
+    }
 
     if (!isLoaded) {
         dispatch(getVacancy({id: idVacancy}))
@@ -36,17 +40,9 @@ export const VacancyPage = memo(() => {
 
     return (
         <Flex direction={"column"} justify={"center"} align={"center"}>
-            <Vacancy profession={profession}
-                     typeOfWork={type_of_work.title}
-                     townTitle={town.title}
-                     firmName={firm_name}
-                     currency={currency}
-                     paymentTo={payment_to}
-                     paymentFrom={payment_from}
-                     id={id}
-            />
+            <Vacancy vacancy={vacancyWithFavorites} rerenderHandler={rerenderVacancyWithFavorite}/>
             <Paper className={classes.wrapper}
-                   dangerouslySetInnerHTML={{__html: vacancyRichText}} //todo
+                   dangerouslySetInnerHTML={{__html: vacancy.vacancyRichText}} //todo
             />
         </Flex>
     );

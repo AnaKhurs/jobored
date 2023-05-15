@@ -36,7 +36,6 @@ export const vacanciesApi = {
 
 export type VacancyType = {
     profession: string
-    firm_name: string
     town: {
         title: string
     }
@@ -49,6 +48,7 @@ export type VacancyType = {
     key: number
     id: number
     vacancyRichText: string
+    favorite: boolean
 }
 
 type ResponseType = {

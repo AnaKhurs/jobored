@@ -1,8 +1,8 @@
-import React, {memo} from "react";
-import {useAppSelector} from "../../../bll/store";
+import React, {memo, useEffect, useState} from "react";
+import {VacancyType} from "../../../dal/vacanciesApi";
+import {getFavorites} from "../../../utils/serviseFavorite";
 import {Vacancy} from "../Vacancy/Vacancy";
 import {Box} from "@mantine/core";
-import {VacancyType} from "../../../dal/vacanciesApi";
 
 type PropsType = {
     vacancies: VacancyType[]
@@ -10,19 +10,27 @@ type PropsType = {
 
 export const Vacancies = memo(({vacancies}: PropsType) => {
 
+    const [vacanciesWithFavorites, setVacanciesWithFavorites] = useState<VacancyType[]>([])
+
+    useEffect(() => {
+        const favorites: VacancyType[] = getFavorites();
+        setVacanciesWithFavorites(
+            vacancies.map((el) => (
+                favorites.some((f) => el.id === f.id) ? {...el, favorite: true} : el))
+        )
+    }, [vacancies])
+
+    const rerenderVacanciesWithFavorites = (id: number, favorite: boolean) => {
+        setVacanciesWithFavorites(prev => prev.map(el => el.id === id ? {...el, favorite: favorite} : el))
+    }
+
     return (
         <Box>
-            {vacancies && vacancies.map((el, index) => {
+            {vacanciesWithFavorites.map((el, index) => {
                 return <Vacancy key={index}
-                                profession={el.profession}
-                                typeOfWork={el.type_of_work.title}
-                                townTitle={el.town.title}
-                                firmName={el.firm_name}
-                                currency={el.currency}
-                                paymentTo={el.payment_to}
-                                paymentFrom={el.payment_from}
-                                id={el.id}
+                                vacancy={el}
                                 isTitleLink={true}
+                                rerenderHandler={rerenderVacanciesWithFavorites}
                 />
             })}
         </Box>

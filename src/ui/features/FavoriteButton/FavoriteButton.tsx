@@ -1,6 +1,6 @@
 import React, {memo} from "react";
+import {ActionIcon} from '@mantine/core';
 import Svg from "../../../img/Svg";
-import {Group} from "@mantine/core";
 
 type PropsType = {
     isFavorite: boolean
@@ -10,8 +10,11 @@ type PropsType = {
 export const FavoriteButton = memo(({isFavorite, toggleFavorite}: PropsType) => {
 
     return (
-        <Group onClick={toggleFavorite}>
-            {isFavorite ? <Svg iconName="fillStar"/> : <Svg iconName="outlineStar"/>}
-        </Group>
+        <ActionIcon
+            variant='transparent'
+            onClick={toggleFavorite}
+        >
+            {isFavorite  ? <Svg iconName="fillStar"/> : <Svg iconName="outlineStar"/>}
+        </ActionIcon>
     );
 });

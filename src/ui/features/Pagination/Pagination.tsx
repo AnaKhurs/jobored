@@ -1,6 +1,5 @@
 import React from "react";
 import ReactPaginate from "react-paginate";
-import {useAppSelector} from "../../../bll/store";
 import Svg from "../../../img/Svg";
 import s from "./Pagination.module.scss"
 

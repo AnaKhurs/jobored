@@ -31,6 +31,7 @@ const vacanciesSlice = createSlice({
                 count: 4,
             } as VacanciesDataType,
             isLoaded: false,
+/*            favoriteVacancies: []*/
         },
         reducers: {
             setFilter(state, action: PayloadAction<{ payment_to?: number | '', payment_from?: number | '', catalogues?: number }>) {
