@@ -2,16 +2,15 @@ import React from "react";
 import ReactPaginate from "react-paginate";
 import Svg from "../../../img/Svg";
 import s from "./Pagination.module.scss"
+import {useAppSelector} from "../../../bll/store";
 
 type PropsType = {
     onSetNewPage: (selectedItem: { selected: number }) => void
-    pageCount: number
-    forcePage: number
 }
 
-export const Pagination = ({onSetNewPage, pageCount, forcePage}: PropsType) => {
+export const Pagination = ({onSetNewPage}: PropsType) => {
 
-    /*    const {
+        const {
             vacanciesData: {
                 total,
                 count,
@@ -19,9 +18,9 @@ export const Pagination = ({onSetNewPage, pageCount, forcePage}: PropsType) => {
             }
         } = useAppSelector(state => state.vacancies);
 
-        const totalPages = total >= 500 ? 500 : total;
+        const totalPages = total >= 500 ? 500 : total; //todo
         const pageCount = Math.ceil(totalPages / count);
-        const forcePage = page - 1;*/
+        const forcePage = page - 1;
 
     return (
         <ReactPaginate className={s.pagination}

@@ -16,7 +16,7 @@ export const Vacancies = memo(({vacancies}: PropsType) => {
         const favorites: VacancyType[] = getFavorites();
         setVacanciesWithFavorites(
             vacancies.map((el) => (
-                favorites.some((f) => el.id === f.id) ? {...el, favorite: true} : el))
+                favorites.some((f) => el.id === f.id) ? {...el, favorite: true} : {...el, favorite: false}))
         )
     }, [vacancies])
 
@@ -29,8 +29,8 @@ export const Vacancies = memo(({vacancies}: PropsType) => {
             {vacanciesWithFavorites.map((el, index) => {
                 return <Vacancy key={index}
                                 vacancy={el}
-                                isTitleLink={true}
                                 rerenderHandler={rerenderVacanciesWithFavorites}
+                                isTitleLink
                 />
             })}
         </Box>

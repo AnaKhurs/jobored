@@ -8,8 +8,8 @@ import {useStyles} from "./styles";
 
 type PropsType = {
     vacancy: VacancyType
-    isTitleLink?: boolean
     rerenderHandler: (id: number, favorite: boolean) => void
+    isTitleLink?: boolean
 }
 
 export const Vacancy = memo(({
