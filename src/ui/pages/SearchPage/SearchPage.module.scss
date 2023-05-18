@@ -1,9 +1,13 @@
 .pagination {
+  display: flex;
   cursor: pointer;
   justify-content: center;
   align-items: center;
 
   .pageClassName {
+    display: flex;
+    align-items: center;
+    justify-content: center;
     min-width: 32px;
     height: 32px;
     background: #FFFFFF;
@@ -11,26 +15,12 @@
     border-radius: 4px;
     margin: 8px;
     padding: 0 5px;
-    color: #232134;
-    font-family: Inter, sans-serif;
-    font-style: normal;
-    font-weight: 400;
-    font-size: 16px;
   }
 
   .activeClassName {
-    min-width: 32px;
-    height: 32px;
-    border-radius: 4px;
-    margin: 8px;
-    padding: 0 5px;
     background: #5E96FC;
     border: 1px solid #5E96FC;
     color: white;
-    font-family: Inter, sans-serif;
-    font-style: normal;
-    font-weight: 400;
-    font-size: 16px;
   }
 
   .previousClassName {
@@ -62,11 +52,22 @@
     fill: #7B7C88;
   }
 
-  :disabled {
+  .disabledClassName {
     background: #FFFFFF;
     border: 1px solid #EAEBED;
     color: #EAEBED;
     stroke: #EAEBED;
     fill: #EAEBED;
+  }
+
+  .breakClassName {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 32px;
+    height: 32px;
+    background: #F5F5F5;
+    margin: 8px;
+    font-weight: bold;
   }
 }

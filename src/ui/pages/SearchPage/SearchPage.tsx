@@ -6,8 +6,10 @@ import {getCatalogues} from "../../../bll/catalogues-reducer";
 import {Filter} from "../../features/Filter/Filter";
 import {Search} from "../../features/Search/Search";
 import {Vacancies} from "../../features/Vacancies/Vacancies";
-import {Pagination} from "../../features/Pagination/Pagination";
 import {Box, Flex} from "@mantine/core";
+import ReactPaginate from "react-paginate";
+import classes from "./SearchPage.module.scss";
+import Svg from "../../../img/Svg";
 
 export const SearchPage = memo(() => {
 
@@ -15,6 +17,7 @@ export const SearchPage = memo(() => {
 
     const {
         vacanciesData: {
+            vacancies,
             count,
             page,
             payment_to,
@@ -22,6 +25,7 @@ export const SearchPage = memo(() => {
             catalogues,
             no_agreement,
             keyword,
+            total,
         }
     } = useAppSelector(state => state.vacancies);
 
@@ -70,7 +74,9 @@ export const SearchPage = memo(() => {
         }));
     }, [dispatch, fetchData]);
 
-    const {vacanciesData: {vacancies}} = useAppSelector(state => state.vacancies)
+    const totalPages = total >= 500 ? 500 : total; //todo
+    const pageCount = Math.ceil(totalPages / count);
+    const forcePage = page - 1;
 
     return (
         <Flex justify="space-evenly">
@@ -78,7 +84,23 @@ export const SearchPage = memo(() => {
             <Box>
                 <Search onSetSearch={onSetSearch}/>
                 <Vacancies vacancies={vacancies}/>
-                <Pagination onSetNewPage={onPageChange}/>
+                <ReactPaginate className={classes.pagination}
+                               onPageChange={onPageChange}
+                               breakLabel="..."
+                               nextLabel={<Svg iconName="arrow"/>}
+                               pageRangeDisplayed={3}
+                               marginPagesDisplayed={1}
+                               pageCount={pageCount}
+                               previousLabel={<Svg iconName="arrow"/>}
+                               renderOnZeroPageCount={null}
+                               forcePage={forcePage}
+                               pageClassName={classes.pageClassName}
+                               activeClassName={classes.activeClassName}
+                               previousClassName={classes.previousClassName}
+                               nextClassName={classes.nextClassName}
+                               disabledClassName={classes.disabledClassName}
+                               breakClassName={classes.breakClassName}
+                />
             </Box>
         </Flex>
     );

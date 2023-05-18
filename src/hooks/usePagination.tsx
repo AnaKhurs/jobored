@@ -15,9 +15,9 @@ interface UsePaginationReturn {
     setPage: (page: number) => void;
 }
 
-type UsePagination = (props: UsePaginationProps) => (UsePaginationReturn);
+type usePagination = (props: UsePaginationProps) => (UsePaginationReturn);
 
-const usePagination: UsePagination = ({contentPerPage, count}) => {
+const usePaginationCustom: usePagination = ({contentPerPage, count}) => {
     const [page, setPage] = useState(1);
     // number of pages in total (total items / content on each page)
     const pageCount = Math.ceil(count / contentPerPage);
@@ -66,4 +66,4 @@ const usePagination: UsePagination = ({contentPerPage, count}) => {
         page,
     };
 };
-export default usePagination;
+export default usePaginationCustom;
