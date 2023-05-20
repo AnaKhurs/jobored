@@ -85,7 +85,7 @@ export const SearchPage = memo(() => {
     if (!isLoaded) return <Preloader/>
 
     return (
-        <Flex justify="space-evenly">
+        <Flex justify={"center"}>
             <Filter onSetFilter={onSetFilter}/>
             <Box>
                 <Search onSetSearch={onSetSearch}/>

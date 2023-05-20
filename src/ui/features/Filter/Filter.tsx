@@ -63,7 +63,7 @@ export const Filter = memo(({onSetFilter}: PropsType) => {
                         variant="subtle"
                         onClick={onClickResetFilter}>Сбросить все x</Button>
             </Flex>
-            <Flex m="32px 0 20px" direction="column">
+            <Flex m="24px 0 20px" direction="column">
                 <Text fz="md" fw={700} color="#232134">Отрасль</Text>
                 <Select className={classes.select}
                         data={cataloguesForSelect}

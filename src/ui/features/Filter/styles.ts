@@ -7,6 +7,7 @@ export const useStyles = createStyles(() => ({
         border: "1px solid #EAEBED",
         padding: "20px",
         height: "100%",
+        marginRight: "28px",
     },
     select: {
         "&.mantine-InputWrapper-root.mantine-Select-root": {

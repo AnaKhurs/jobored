@@ -11,6 +11,7 @@ export const Header = memo(() => {
     const styleNavigation = (isActive: boolean) => ({
         color: isActive ? "#5E96FC" : "#232134",
         textDecoration: "none",
+        fontWeight: isActive ? 500 : 400,
         marginRight: 60,
     })
 
@@ -36,7 +37,7 @@ export const Header = memo(() => {
             <NavLink to={PATH.MAIN}>
                 <Svg iconName="logo"/>
             </NavLink>
-            <Group>{items}</Group>
+            <Group mr={300}>{items}</Group>
         </Flex>
     );
 });

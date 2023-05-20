@@ -8,7 +8,7 @@ import {FavoritesPage} from "./ui/pages/FavoritesPage/FavoritesPage";
 import {VacancyPage} from "./ui/pages/VacancyPage/VacancyPage";
 import {PATH} from "./utils/paths";
 import {client_id, client_secret, hr, login, password} from "./loginData"; //todo
-import {Box, Flex, Loader} from '@mantine/core';
+import {Box, Flex, Loader} from "@mantine/core";
 
 export const App = memo(() => {
 
