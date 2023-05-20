@@ -6,12 +6,16 @@ import {getCatalogues} from "../../../bll/catalogues-reducer";
 import {Filter} from "../../features/Filter/Filter";
 import {Search} from "../../features/Search/Search";
 import {Vacancies} from "../../features/Vacancies/Vacancies";
-import {Box, Flex} from "@mantine/core";
+import {Preloader} from "../../features/Preloader/Preloader";
 import ReactPaginate from "react-paginate";
-import classes from "./SearchPage.module.scss";
+import {Box, Flex} from "@mantine/core";
 import Svg from "../../../img/Svg";
+import classes from "./SearchPage.module.scss";
+import {Paper, Text} from "@mantine/core";
 
 export const SearchPage = memo(() => {
+
+    console.log("SearchPage")
 
     const dispatch = useAppDispatch();
 
@@ -26,7 +30,8 @@ export const SearchPage = memo(() => {
             no_agreement,
             keyword,
             total,
-        }
+        },
+        isLoaded
     } = useAppSelector(state => state.vacancies);
 
     const fetchData: GetVacanciesPayloadType = useMemo(() => {
@@ -48,7 +53,7 @@ export const SearchPage = memo(() => {
 
     const onSetFilter = useCallback((catalogues?: number, payment_from?: number | '', payment_to?: number | '') => {
         dispatch(setFilter({payment_to, payment_from, catalogues}));
-        dispatch(setPage(1));
+        dispatch(setPage(0));
         dispatch(getVacancies({
             ...fetchData,
             catalogues,
@@ -67,40 +72,49 @@ export const SearchPage = memo(() => {
 
     const onPageChange = useCallback((selectedItem: { selected: number }) => {
         const {selected} = selectedItem;
-        dispatch(setPage(selected + 1));
+        dispatch(setPage(selected));
         dispatch(getVacancies({
             ...fetchData,
-            page: selected + 1,
+            page: selected,
         }));
     }, [dispatch, fetchData]);
 
-    const totalPages = total >= 500 ? 500 : total; //todo
+    const totalPages = total >= 500 ? 500 : total;
     const pageCount = Math.ceil(totalPages / count);
-    const forcePage = page - 1;
+
+    if (!isLoaded) return <Preloader/>
 
     return (
         <Flex justify="space-evenly">
             <Filter onSetFilter={onSetFilter}/>
             <Box>
                 <Search onSetSearch={onSetSearch}/>
-                <Vacancies vacancies={vacancies}/>
-                <ReactPaginate className={classes.pagination}
-                               onPageChange={onPageChange}
-                               breakLabel="..."
-                               nextLabel={<Svg iconName="arrow"/>}
-                               pageRangeDisplayed={3}
-                               marginPagesDisplayed={1}
-                               pageCount={pageCount}
-                               previousLabel={<Svg iconName="arrow"/>}
-                               renderOnZeroPageCount={null}
-                               forcePage={forcePage}
-                               pageClassName={classes.pageClassName}
-                               activeClassName={classes.activeClassName}
-                               previousClassName={classes.previousClassName}
-                               nextClassName={classes.nextClassName}
-                               disabledClassName={classes.disabledClassName}
-                               breakClassName={classes.breakClassName}
-                />
+                {vacancies.length === 0
+                    ? <Paper className={classes.wrapper}>
+                        <Text fz="lg" fw={"bold"}>Ничего не нашлось.</Text>
+                        <Text fz="md">Попробуйте изменить условия поиска</Text>
+                    </Paper>
+                    : <>
+                        <Vacancies vacancies={vacancies}/>
+                        <ReactPaginate className={classes.pagination}
+                                       onPageChange={onPageChange}
+                                       breakLabel="..."
+                                       nextLabel={<Svg iconName="arrow"/>}
+                                       pageRangeDisplayed={3}
+                                       marginPagesDisplayed={1}
+                                       pageCount={pageCount}
+                                       previousLabel={<Svg iconName="arrow"/>}
+                                       renderOnZeroPageCount={null}
+                                       forcePage={page}
+                                       pageClassName={classes.pageClassName}
+                                       activeClassName={classes.activeClassName}
+                                       previousClassName={classes.previousClassName}
+                                       nextClassName={classes.nextClassName}
+                                       disabledClassName={classes.disabledClassName}
+                                       breakClassName={classes.breakClassName}
+                        />
+                    </>
+                }
             </Box>
         </Flex>
     );

@@ -1,6 +1,7 @@
 import {VacancyType} from "../dal/vacanciesApi";
 
 export const getFavorites = () => {
+
     const favorites = localStorage.getItem("favorites");
     if (!favorites) return [];
     return JSON.parse(favorites);

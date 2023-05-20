@@ -27,11 +27,12 @@ const vacanciesSlice = createSlice({
                 catalogues: undefined,
                 no_agreement: 1, //toDo
                 total: 0,
-                page: 1,
+                page: 0,
                 count: 4,
             } as VacanciesDataType,
             isLoaded: false,
-/*            favoriteVacancies: []*/
+            vacancy: {} as VacancyType,
+            id: 0,
         },
         reducers: {
             setFilter(state, action: PayloadAction<{ payment_to?: number | '', payment_from?: number | '', catalogues?: number }>) {
@@ -43,7 +44,14 @@ const vacanciesSlice = createSlice({
                 state.vacanciesData.page = action.payload;
             },
             setSearchValue(state, action: PayloadAction<string>) {
-                state.vacanciesData.keyword = action.payload
+                state.vacanciesData.keyword = action.payload;
+            },
+            setIdVacancy(state, action: PayloadAction<number>) {
+                state.id = action.payload;
+            },
+            cleanVacancy(state) {
+                debugger
+                state.vacancy = {} as VacancyType;
             },
         },
         extraReducers: builder => {
@@ -51,6 +59,12 @@ const vacanciesSlice = createSlice({
                 if (action.payload) {
                     state.vacanciesData.vacancies = [...action.payload.objects]
                     state.vacanciesData.total = action.payload.total
+                    state.isLoaded = true
+                }
+            });
+            builder.addCase(getVacancy.fulfilled, (state, action) => {
+                if (action.payload) {
+                    state.vacancy = {...action.payload}
                     state.isLoaded = true
                 }
             });
@@ -79,6 +93,31 @@ export const getVacancies = createAsyncThunk(
     }
 );
 
+export const getVacancy = createAsyncThunk(
+    "vacancies/getVacancy",
+    async (data: any, {dispatch, rejectWithValue}) => {
+        debugger
+
+        /*dispatch(cleanActiveVacancy(false));*/
+        dispatch(setAppStatus("loading"));
+        try {
+            debugger
+            const res = await vacanciesApi.getVacancy(data);
+            dispatch(setAppStatus("succeeded"));
+            return res.data;
+        } catch (e: any) {
+            debugger
+            const error = e.response
+                ? e.response.data.error
+                : (e.message + ", Try later")
+            console.log({...e})
+            dispatch(setAppError(error))
+            dispatch(setAppStatus("failed"))
+            return rejectWithValue({})
+        }
+    }
+);
+
 export const vacanciesReducer = vacanciesSlice.reducer;
-export const {setFilter, setPage, setSearchValue,} = vacanciesSlice.actions;
+export const {setFilter, setPage, setSearchValue, setIdVacancy, cleanVacancy,} = vacanciesSlice.actions;
 

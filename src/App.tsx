@@ -1,4 +1,4 @@
-import React from "react";
+import React, {memo} from "react";
 import {Route, Routes} from "react-router-dom";
 import {useAppDispatch, useAppSelector} from "./bll/store";
 import {initializeApp} from "./bll/app-reducer";
@@ -10,7 +10,7 @@ import {PATH} from "./utils/paths";
 import {client_id, client_secret, hr, login, password} from "./loginData"; //todo
 import {Box, Flex, Loader} from '@mantine/core';
 
-function App() {
+export const App = memo(() => {
 
     const isInitialized = useAppSelector<boolean>(state => state.app.isInitialized);
 
@@ -39,6 +39,6 @@ function App() {
             </Routes>
         </Box>
     );
-}
+})
 
 export default App;

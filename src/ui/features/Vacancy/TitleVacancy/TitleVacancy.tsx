@@ -1,10 +1,11 @@
-import React, {memo} from "react";
+import React, {memo, useCallback} from "react";
 import {useNavigate} from "react-router-dom";
 import {useAppDispatch} from "../../../../bll/store";
-import {getVacancy, setIdVacancy} from "../../../../bll/vacancy-reducer";
+import {getVacancy, setIdVacancy} from "../../../../bll/vacancies-reducer";
+import {PATH} from "../../../../utils/paths";
 import {FavoriteButton} from "../../FavoriteButton/FavoriteButton";
 import {Anchor, Flex, Text} from "@mantine/core";
-import {PATH} from "../../../../utils/paths";
+
 
 type PropsType = {
     profession: string
@@ -22,14 +23,16 @@ export const TitleVacancy = memo(({
                                       favorite,
                                   }: PropsType) => {
 
+    console.log("TitleVacancy")
+
     const dispatch = useAppDispatch();
     const navigate = useNavigate();
 
-    const navigateToVacancyPage = (id: number) => {
+    const navigateToVacancyPage = useCallback((id: number) => {
         dispatch(setIdVacancy(id));
         dispatch(getVacancy({id}));
         navigate(PATH.VACANCY + `/${id}`);
-    };
+    }, [dispatch, navigate]);
 
     return (
         <Flex justify="space-between" align="center">

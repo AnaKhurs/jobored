@@ -18,6 +18,8 @@ export const Vacancy = memo(({
                                  rerenderHandler,
                              }: PropsType) => {
 
+    console.log("Vacancy")
+
     const {classes} = useStyles();
 
     const toggleFavorite = useCallback(() => {

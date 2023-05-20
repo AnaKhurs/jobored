@@ -10,15 +10,17 @@ type PropsType = {
 
 export const Search = memo(({onSetSearch}: PropsType) => {
 
+    console.log("Search")
+
     const {classes} = useStyles();
 
     const {keyword} = useAppSelector(state => state.vacancies.vacanciesData);
     const [value, setValue] = useState<string>(keyword || "");
     const onChangeCallback = useCallback((e: ChangeEvent<HTMLInputElement>) => setValue(e.currentTarget.value), []);
 
-    const onClickHandler = () => {
+    const onClickHandler = useCallback(() => {
         onSetSearch(value);
-    };
+    }, [onSetSearch, value]);
 
     return (
         <Group className={classes.wrapper}>

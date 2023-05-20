@@ -1,4 +1,4 @@
-import React, {memo} from "react";
+import React, {memo, useCallback} from "react";
 import {Group, Text} from "@mantine/core";
 import Svg from "../../../../img/Svg";
 import {useStyles} from "../styles";
@@ -21,9 +21,11 @@ export const BodyVacancy = memo(({
                                      currency,
                                  }: PropsType) => {
 
+    console.log("BodyVacancy")
+
     const {classes} = useStyles();
 
-    const getCurrencyDescription = (paymentFrom?: number, paymentTo?: number, currency?: string) => {
+    const getCurrencyDescription = useCallback((paymentFrom?: number, paymentTo?: number, currency?: string) => {
         if (paymentFrom && paymentTo && currency) {
             return `з/п ${paymentFrom} - ${paymentTo} ${currency}`
         }
@@ -37,7 +39,7 @@ export const BodyVacancy = memo(({
             return `з/п до ${paymentTo} ${currency}`
         }
         return ""
-    };
+    }, []);
 
     return (
         <>

@@ -9,6 +9,8 @@ type PropsType = {
 
 export const FavoriteButton = memo(({isFavorite, toggleFavorite}: PropsType) => {
 
+    console.log("FavoriteButton")
+
     return (
         <ActionIcon
             variant='transparent'

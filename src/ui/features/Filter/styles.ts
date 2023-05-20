@@ -38,6 +38,7 @@ export const useStyles = createStyles(() => ({
             },
             "& .mantine-unhde.mantine-Input-rightSection.mantine-NumberInput-rightSection": {
                 marginRight: "5px",
+
                 "& button": {
                     border: "none",
                     color: "#ACADB9",
@@ -46,6 +47,13 @@ export const useStyles = createStyles(() => ({
                         cursor: "pointer",
                         color: "#ACADB9",
                     }
+                },
+
+                "& button.mantine-NumberInput-control.mantine-NumberInput-controlUp": {
+                    alignItems: "flex-end",
+                },
+                "& button.mantine-NumberInput-control .mantine-NumberInput-controlDown": {
+                    alignItems: "flex-start",
                 }
             }
         },

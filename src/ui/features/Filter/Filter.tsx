@@ -1,14 +1,17 @@
-import React, {memo, useMemo, useState} from "react";
+import React, {memo, useCallback, useMemo, useState} from "react";
 import {useAppSelector} from "../../../bll/store";
 import {Button, Flex, NumberInput, Paper, rem, Select, Text} from "@mantine/core";
-import {IconChevronDown} from "@tabler/icons-react";
+
 import {useStyles} from "./styles";
+import Svg from "../../../img/Svg";
 
 type PropsType = {
     onSetFilter: (keyCatalog?: number, payment_from?: number | "", payment_to?: number | "") => void
 }
 
 export const Filter = memo(({onSetFilter}: PropsType) => {
+
+    console.log("Filter")
 
     const {classes} = useStyles();
 
@@ -28,29 +31,29 @@ export const Filter = memo(({onSetFilter}: PropsType) => {
     }, [catalogues]);
 
 
-    const onChangeSelectHandler = (value: string) => {
+    const onChangeSelectHandler = useCallback((value: string) => {
         setKeyCatalog(value);
-    };
+    }, []);
 
-    const onChangePaymentFromHandler = (value: number) => {
+    const onChangePaymentFromHandler = useCallback((value: number) => {
         setPayment_from(value);
-    };
+    }, []);
 
-    const onChangePaymentToHandler = (value: number) => {
+    const onChangePaymentToHandler = useCallback((value: number) => {
         setPayment_to(value);
-    };
+    }, []);
 
-    const onClickHandler = () => {
+    const onClickSetFilter = useCallback(() => {
         const catalogues = keyCatalog ? +keyCatalog : undefined;
         onSetFilter(catalogues, payment_from, payment_to);
-    };
+    }, [keyCatalog, onSetFilter, payment_from, payment_to]);
 
-    const onClickResetFilter = () => {
+    const onClickResetFilter = useCallback(() => {
         setKeyCatalog("");
         setPayment_from("");
         setPayment_to("");
         onSetFilter(undefined, undefined, undefined);
-    }
+    }, [onSetFilter])
 
     return (
         <Paper className={classes.wrapper}>
@@ -67,7 +70,7 @@ export const Filter = memo(({onSetFilter}: PropsType) => {
                         value={keyCatalog}
                         onChange={onChangeSelectHandler}
                         placeholder="Выберете отрасль"
-                        rightSection={<IconChevronDown size="1rem"/>}
+                        rightSection={<Svg iconName="iconChevronDown"/>}
                         mt={8}
                 />
             </Flex>
@@ -77,6 +80,7 @@ export const Filter = memo(({onSetFilter}: PropsType) => {
                              type="number"
                              placeholder="От"
                              min={0}
+                             step={1000}
                              value={payment_from}
                              onChange={onChangePaymentFromHandler}
                 />
@@ -84,6 +88,7 @@ export const Filter = memo(({onSetFilter}: PropsType) => {
                              type="number"
                              placeholder="До"
                              min={0}
+                             step={1000}
                              value={payment_to}
                              onChange={onChangePaymentToHandler}
                 />
@@ -91,7 +96,7 @@ export const Filter = memo(({onSetFilter}: PropsType) => {
             <Button mt={20}
                     h={rem(42)}
                     w={rem(275)}
-                    onClick={onClickHandler}>Применить</Button>
+                    onClick={onClickSetFilter}>Применить</Button>
         </Paper>
     );
 });

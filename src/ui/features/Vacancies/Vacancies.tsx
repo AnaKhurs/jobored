@@ -1,4 +1,4 @@
-import React, {memo, useEffect, useState} from "react";
+import React, {memo, useCallback, useEffect, useState} from "react";
 import {VacancyType} from "../../../dal/vacanciesApi";
 import {getFavorites} from "../../../utils/serviseFavorite";
 import {Vacancy} from "../Vacancy/Vacancy";
@@ -10,6 +10,8 @@ type PropsType = {
 
 export const Vacancies = memo(({vacancies}: PropsType) => {
 
+    console.log("Vacancies")
+
     const [vacanciesWithFavorites, setVacanciesWithFavorites] = useState<VacancyType[]>([])
 
     useEffect(() => {
@@ -20,9 +22,9 @@ export const Vacancies = memo(({vacancies}: PropsType) => {
         )
     }, [vacancies])
 
-    const rerenderVacanciesWithFavorites = (id: number, favorite: boolean) => {
+    const rerenderVacanciesWithFavorites = useCallback((id: number, favorite: boolean) => {
         setVacanciesWithFavorites(prev => prev.map(el => el.id === id ? {...el, favorite: favorite} : el))
-    }
+    }, [])
 
     return (
         <Box>

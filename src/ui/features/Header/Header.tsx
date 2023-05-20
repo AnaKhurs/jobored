@@ -6,6 +6,8 @@ import Svg from "../../../img/Svg";
 
 export const Header = memo(() => {
 
+    console.log("Header")
+
     const styleNavigation = (isActive: boolean) => ({
         color: isActive ? "#5E96FC" : "#232134",
         textDecoration: "none",
@@ -31,7 +33,9 @@ export const Header = memo(() => {
               h={84}
               bg={"#FFFFFF"}
               mb={40}>
-            <Svg iconName="logo"/>
+            <NavLink to={PATH.MAIN}>
+                <Svg iconName="logo"/>
+            </NavLink>
             <Group>{items}</Group>
         </Flex>
     );

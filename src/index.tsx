@@ -5,8 +5,8 @@ import {BrowserRouter} from "react-router-dom";
 import {Provider} from "react-redux";
 import {store} from "./bll/store";
 import App from "./App";
-import {MantineProvider} from "@mantine/core";
 import {globalTheme} from "./globalTheme";
+import {MantineProvider} from "@mantine/core";
 import "./index.css";
 
 const root = ReactDOM.createRoot(
@@ -16,9 +16,7 @@ root.render(
     <MantineProvider theme={globalTheme} withGlobalStyles withNormalizeCSS>
         <Provider store={store}>
             <BrowserRouter>
-                <React.StrictMode>
-                    <App/>
-                </React.StrictMode>
+                <App/>
             </BrowserRouter>
         </Provider>
     </MantineProvider>

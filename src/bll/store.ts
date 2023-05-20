@@ -5,22 +5,15 @@ import {TypedUseSelectorHook, useDispatch, useSelector} from "react-redux";
 import {appReducer} from "./app-reducer";
 import {vacanciesReducer} from "./vacancies-reducer";
 import {cataloguesReducer} from "./catalogues-reducer";
-import {vacancyReducer} from "./vacancy-reducer";
 
 const reducers = combineReducers({
     app: appReducer,
     vacancies: vacanciesReducer,
-    vacancy: vacancyReducer,
     catalogues: cataloguesReducer,
 })
 
-/*let preloadedState
-const LCFavoriteVacancies = localStorage.getItem('asdad')
-if(LCFavoriteVacancies !== null) preloadedState = JSON.parse(LCFavoriteVacancies)*/
-
 export const store = configureStore({
     reducer: reducers,
-/*    preloadedState,*/
     middleware: getDefaultMiddleware => getDefaultMiddleware().prepend(thunk)
 })
 
@@ -30,7 +23,3 @@ export const useAppDispatch = () => useDispatch<typeof store.dispatch>()
 
 //@ts-ignore
 window.store = store
-/*
-store.subscribe(() => {
-    localStorage.setItem('asdad', store.getState().vacancies.favoriteVacancies)
-})*/
