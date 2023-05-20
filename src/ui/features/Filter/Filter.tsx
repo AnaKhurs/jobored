@@ -65,7 +65,8 @@ export const Filter = memo(({onSetFilter}: PropsType) => {
             </Flex>
             <Flex m="24px 0 20px" direction="column">
                 <Text fz="md" fw={700} color="#232134">Отрасль</Text>
-                <Select className={classes.select}
+                <Select data-elem="industry-select"
+                        className={classes.select}
                         data={cataloguesForSelect}
                         value={keyCatalog}
                         onChange={onChangeSelectHandler}
@@ -76,7 +77,8 @@ export const Filter = memo(({onSetFilter}: PropsType) => {
             </Flex>
             <Flex direction="column">
                 <Text fz="md" fw={700} color="#232134">Оклад</Text>
-                <NumberInput className={classes.input}
+                <NumberInput data-elem="salary-from-input"
+                             className={classes.input}
                              type="number"
                              placeholder="От"
                              min={0}
@@ -84,7 +86,8 @@ export const Filter = memo(({onSetFilter}: PropsType) => {
                              value={payment_from}
                              onChange={onChangePaymentFromHandler}
                 />
-                <NumberInput className={classes.input}
+                <NumberInput data-elem="salary-to-input"
+                             className={classes.input}
                              type="number"
                              placeholder="До"
                              min={0}
@@ -93,7 +96,8 @@ export const Filter = memo(({onSetFilter}: PropsType) => {
                              onChange={onChangePaymentToHandler}
                 />
             </Flex>
-            <Button mt={20}
+            <Button data-elem="search-button"
+                    mt={20}
                     h={rem(42)}
                     w={rem(275)}
                     onClick={onClickSetFilter}>Применить</Button>

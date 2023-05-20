@@ -45,7 +45,7 @@ export const TitleVacancy = memo(({
                         fw={700}
                         color="#232134">{profession}</Text>
             }
-            <FavoriteButton toggleFavorite={toggleFavorite} isFavorite={favorite}/>
+            <FavoriteButton toggleFavorite={toggleFavorite} isFavorite={favorite} id={id}/>
         </Flex>
     );
 });

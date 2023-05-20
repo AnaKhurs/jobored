@@ -24,14 +24,16 @@ export const Search = memo(({onSetSearch}: PropsType) => {
 
     return (
         <Group className={classes.wrapper}>
-            <Input w="100%"
+            <Input data-elem="search-input"
+                   w="100%"
                    variant="unstyled"
                    icon={<Svg iconName="search"/>}
                    placeholder="Введите название вакансии"
                    value={value}
                    onChange={onChangeCallback}
             />
-            <Button m="8px 0"
+            <Button data-elem="search-button"
+                    m="8px 0"
                     h={rem(32)}
                     w={rem(83)}
                     onClick={onClickHandler}>Поиск</Button>

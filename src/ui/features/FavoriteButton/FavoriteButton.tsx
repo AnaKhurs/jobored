@@ -1,22 +1,23 @@
 import React, {memo} from "react";
-import {ActionIcon} from '@mantine/core';
+import {Button} from '@mantine/core';
 import Svg from "../../../img/Svg";
 
 type PropsType = {
     isFavorite: boolean
     toggleFavorite: () => void
+    id: number
 }
 
-export const FavoriteButton = memo(({isFavorite, toggleFavorite}: PropsType) => {
+export const FavoriteButton = memo(({isFavorite, toggleFavorite, id}: PropsType) => {
 
     console.log("FavoriteButton")
 
     return (
-        <ActionIcon
-            variant='transparent'
-            onClick={toggleFavorite}
+        <Button data-elem={`vacancy-${id}-shortlist-button`}
+                variant='transparent'
+                onClick={toggleFavorite}
         >
-            {isFavorite  ? <Svg iconName="fillStar"/> : <Svg iconName="outlineStar"/>}
-        </ActionIcon>
+            {isFavorite ? <Svg iconName="fillStar"/> : <Svg iconName="outlineStar"/>}
+        </Button>
     );
 });

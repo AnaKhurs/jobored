@@ -32,7 +32,7 @@ export const Vacancy = memo(({
     }, [rerenderHandler, vacancy]);
 
     return (
-        <Paper className={classes.wrapper}>
+        <Paper className={classes.wrapper} data-elem={`vacancy-${vacancy.id}`}>
             <TitleVacancy isTitleLink={isTitleLink}
                           profession={vacancy.profession}
                           id={vacancy.id}
