@@ -12,7 +12,7 @@ export const Vacancies = memo(({vacancies}: PropsType) => {
 
     console.log("Vacancies")
 
-    const [vacanciesWithFavorites, setVacanciesWithFavorites] = useState<VacancyType[]>([])
+    const [vacanciesWithFavorites, setVacanciesWithFavorites] = useState<VacancyType[]>()
 
     useEffect(() => {
         const favorites: VacancyType[] = getFavorites();
@@ -23,12 +23,12 @@ export const Vacancies = memo(({vacancies}: PropsType) => {
     }, [vacancies])
 
     const rerenderVacanciesWithFavorites = useCallback((id?: number, favorite?: boolean) => {
-        favorite && setVacanciesWithFavorites(prev => prev.map(el => el.id === id ? {...el, favorite: favorite} : el))
+        favorite && setVacanciesWithFavorites(prev => prev?.map(el => el.id === id ? {...el, favorite: favorite} : el))
     }, [])
 
     return (
         <Box>
-            {vacanciesWithFavorites.map((el, index) => {
+            {vacanciesWithFavorites?.map((el, index) => {
                 return <Vacancy key={index}
                                 vacancy={el}
                                 rerenderHandler={rerenderVacanciesWithFavorites}

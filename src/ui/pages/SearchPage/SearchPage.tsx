@@ -1,7 +1,7 @@
 import React, {memo, useCallback, useEffect, useMemo} from "react";
 import {GetVacanciesPayloadType} from "../../../dal/vacanciesApi";
 import {useAppDispatch, useAppSelector} from "../../../bll/store";
-import {getVacancies, setPage} from "../../../bll/vacancies-reducer";
+import {cleanVacancies, getVacancies, setPage} from "../../../bll/vacancies-reducer";
 import {Filter} from "../../features/Filter/Filter";
 import {Search} from "../../features/Search/Search";
 import {Vacancies} from "../../features/Vacancies/Vacancies";
@@ -29,7 +29,6 @@ export const SearchPage = memo(() => {
             keyword,
             total,
         },
-        isLoaded
     } = useAppSelector(state => state.vacancies);
 
     const fetchData: GetVacanciesPayloadType = useMemo(() => {
@@ -46,6 +45,9 @@ export const SearchPage = memo(() => {
 
     useEffect(() => {
         dispatch(getVacancies(fetchData))
+        return () => {
+            dispatch(cleanVacancies())
+        }
     }, [dispatch, fetchData]);
 
     const onPageChange = useCallback((selectedItem: { selected: number }) => {
@@ -56,41 +58,37 @@ export const SearchPage = memo(() => {
     const totalPages = total && total >= 500 ? 500 : total;
     const pageCount = totalPages && Math.ceil(totalPages / count);
 
-    if (!isLoaded) return <Preloader/>
-
-    console.log("vacancies", vacancies)
+    if (!vacancies) return <Preloader/>
 
     return (
         <Flex justify={"center"}>
             <Filter/>
             <Box>
                 <Search/>
-                {!vacancies
-                    ? <Paper className={classes.wrapper}>
-                        <Text fz="lg" fw={"bold"}>Ничего не нашлось.</Text>
-                        <Text fz="md">Попробуйте изменить условия поиска</Text>
-                    </Paper>
-                    : <>
-                        <Vacancies vacancies={vacancies}/>
-                        <ReactPaginate className={classes.pagination}
-                                       onPageChange={onPageChange}
-                                       breakLabel="..."
-                                       nextLabel={<Svg iconName="arrow"/>}
-                                       pageRangeDisplayed={3}
-                                       marginPagesDisplayed={1}
-                                       pageCount={pageCount ?? 0}
-                                       previousLabel={<Svg iconName="arrow"/>}
-                                       renderOnZeroPageCount={null}
-                                       forcePage={page}
-                                       pageClassName={classes.pageClassName}
-                                       activeClassName={classes.activeClassName}
-                                       previousClassName={classes.previousClassName}
-                                       nextClassName={classes.nextClassName}
-                                       disabledClassName={classes.disabledClassName}
-                                       breakClassName={classes.breakClassName}
-                        />
-                    </>
-                }
+                {vacancies?.length === 0 && <Paper className={classes.wrapper}>
+                    <Text fz="lg" fw={"bold"}>Ничего не нашлось.</Text>
+                    <Text fz="md">Попробуйте изменить условия поиска</Text>
+                </Paper>}
+                {vacancies &&
+                <>
+                    <Vacancies vacancies={vacancies}/>
+                    <ReactPaginate className={classes.pagination}
+                                   onPageChange={onPageChange}
+                                   breakLabel="..."
+                                   nextLabel={<Svg iconName="arrow"/>}
+                                   pageRangeDisplayed={3}
+                                   marginPagesDisplayed={1}
+                                   pageCount={pageCount ?? 0}
+                                   previousLabel={<Svg iconName="arrow"/>}
+                                   renderOnZeroPageCount={null}
+                                   forcePage={page}
+                                   pageClassName={classes.pageClassName}
+                                   activeClassName={classes.activeClassName}
+                                   previousClassName={classes.previousClassName}
+                                   nextClassName={classes.nextClassName}
+                                   disabledClassName={classes.disabledClassName}
+                                   breakClassName={classes.breakClassName}/>
+                </>}
             </Box>
         </Flex>
     );

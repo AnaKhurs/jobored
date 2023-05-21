@@ -55,11 +55,11 @@ const vacanciesSlice = createSlice({
             setSearchValue(state, action: PayloadAction<string>) {
                 state.vacanciesData.keyword = action.payload;
             },
-            setIdVacancy(state, action: PayloadAction<number>) {
-                state.id = action.payload;
-            },
             cleanVacancy(state) {
                 state.vacancy = undefined;
+            },
+            cleanVacancies(state) {
+                state.vacanciesData.vacancies = undefined;
             },
         },
         extraReducers: builder => {
@@ -123,5 +123,5 @@ export const getVacancy = createAsyncThunk(
 );
 
 export const vacanciesReducer = vacanciesSlice.reducer;
-export const {setFilter, setPage, setSearchValue, setIdVacancy, cleanVacancy,} = vacanciesSlice.actions;
+export const {setFilter, setPage, setSearchValue, cleanVacancy, cleanVacancies} = vacanciesSlice.actions;
 
