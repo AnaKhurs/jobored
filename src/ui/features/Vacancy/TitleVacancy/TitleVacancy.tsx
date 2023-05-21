@@ -1,10 +1,9 @@
-import React, {memo, useCallback} from "react";
-import {useNavigate} from "react-router-dom";
-import {useAppDispatch} from "../../../../bll/store";
-import {getVacancy, setIdVacancy} from "../../../../bll/vacancies-reducer";
+import React, {memo} from "react";
+import {Link} from "react-router-dom";
 import {PATH} from "../../../../utils/paths";
 import {FavoriteButton} from "../../FavoriteButton/FavoriteButton";
-import {Anchor, Flex, Text} from "@mantine/core";
+import {Flex, Text} from "@mantine/core";
+import {useStyles} from "./styles";
 
 type PropsType = {
     profession: string
@@ -22,24 +21,12 @@ export const TitleVacancy = memo(({
                                       favorite,
                                   }: PropsType) => {
 
-    console.log("TitleVacancy")
-
-    const dispatch = useAppDispatch();
-    const navigate = useNavigate();
-
-    const navigateToVacancyPage = useCallback((id: number) => {
-        dispatch(setIdVacancy(id));
-        dispatch(getVacancy({id}));
-        navigate(PATH.VACANCY + `/${id}`);
-    }, [dispatch, navigate]);
+    const {classes} = useStyles();
 
     return (
         <Flex justify="space-between" align="center">
             {isTitleLink
-                ? <Anchor fz="lg"
-                          fw={600}
-                          color="#5E96FC"
-                          onClick={() => navigateToVacancyPage(id)}>{profession}</Anchor>
+                ? <Link to={PATH.VACANCY + `/${id}`} className={classes.link}>{profession}</Link>
                 : <Text fz="xl"
                         fw={700}
                         color="#232134">{profession}</Text>

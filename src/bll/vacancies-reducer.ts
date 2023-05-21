@@ -59,7 +59,7 @@ const vacanciesSlice = createSlice({
                 state.id = action.payload;
             },
             cleanVacancy(state) {
-                state.vacancy = {} as VacancyType;
+                state.vacancy = undefined;
             },
         },
         extraReducers: builder => {

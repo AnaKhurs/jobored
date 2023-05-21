@@ -1,7 +1,7 @@
 import React, {memo, useCallback} from "react";
 import {Group, Text} from "@mantine/core";
 import Svg from "../../../../img/Svg";
-import {useStyles} from "../styles";
+import {useStyles} from "./styles";
 
 type PropsType = {
     firmName?: string
@@ -20,8 +20,6 @@ export const BodyVacancy = memo(({
                                      paymentFrom,
                                      currency,
                                  }: PropsType) => {
-
-    console.log("BodyVacancy")
 
     const {classes} = useStyles();
 

@@ -10,7 +10,4 @@ export const useStyles = createStyles(() => ({
         margin: "16px 0",
         width: "773px",
     },
-    location: {
-        gap: "0.5rem"
-    },
 }));
