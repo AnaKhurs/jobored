@@ -10,6 +10,7 @@ import ReactPaginate from "react-paginate";
 import {Box, Flex, Paper, Text} from "@mantine/core";
 import Svg from "../../../img/Svg";
 import classes from "./SearchPage.module.scss";
+import {ErrorSnackbar} from "../../features/ErrorSnackbar/ErrorSnackBar";
 
 export const SearchPage = memo(() => {
 
@@ -30,6 +31,8 @@ export const SearchPage = memo(() => {
             total,
         },
     } = useAppSelector(state => state.vacancies);
+
+    const {error} = useAppSelector(state => state.app);
 
     const fetchData: GetVacanciesPayloadType = useMemo(() => {
         return {
@@ -58,7 +61,10 @@ export const SearchPage = memo(() => {
     const totalPages = total && total >= 500 ? 500 : total;
     const pageCount = totalPages && Math.ceil(totalPages / count);
 
+    if (error) return <ErrorSnackbar/>
+
     if (!vacancies) return <Preloader/>
+
 
     return (
         <Flex justify={"center"}>

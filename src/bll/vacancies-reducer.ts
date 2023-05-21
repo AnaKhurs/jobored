@@ -90,10 +90,7 @@ export const getVacancies = createAsyncThunk(
             dispatch(setAppStatus("succeeded"));
             return res.data;
         } catch (e: any) {
-            const error = e.response
-                ? e.response.data.error
-                : (e.message + ", Try later")
-            console.log({...e})
+            const error = e.response.data + ". Try later"
             dispatch(setAppError(error))
             dispatch(setAppStatus("failed"))
             return rejectWithValue({})
@@ -110,11 +107,7 @@ export const getVacancy = createAsyncThunk(
             dispatch(setAppStatus("succeeded"));
             return res.data;
         } catch (e: any) {
-
-            const error = e.response
-                ? e.response.data.error
-                : (e.message + ", Try later")
-            console.log({...e})
+            const error = e.response.data + ". Try later"
             dispatch(setAppError(error))
             dispatch(setAppStatus("failed"))
             return rejectWithValue({})

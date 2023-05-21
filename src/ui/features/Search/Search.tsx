@@ -11,13 +11,13 @@ export const Search = memo(() => {
 
     const {classes} = useStyles();
     const dispatch = useAppDispatch();
+    const {keyword} = useAppSelector(state => state.vacancies.vacanciesData);
 
     const onSetSearch = useCallback((keyword: string) => {
         dispatch(setSearchValue(keyword));
         dispatch(setPage(0));
     }, [dispatch]);
 
-    const {keyword} = useAppSelector(state => state.vacancies.vacanciesData);
     const [value, setValue] = useState<string>(keyword || "");
     const onChangeCallback = useCallback((e: ChangeEvent<HTMLInputElement>) => setValue(e.currentTarget.value), []);
 

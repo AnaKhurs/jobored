@@ -6,7 +6,7 @@ export type GetVacanciesPayloadType = {
     payment_from?: number | '' | null,
     payment_to?: number | '' | null,
     catalogues?: number | null,
-    no_agreement?: number,//toDo
+    no_agreement?: number,
     page?: number,
     count?: number,
     id?: number,
@@ -17,7 +17,7 @@ export const vacanciesApi = {
         return instance.get<ResponseType>(`vacancies/`, {
             headers: {
                 "X-Api-App-Id": "v3.r.137440105.ffdbab114f92b821eac4e21f485343924a773131.06c3bdbb8446aeb91c35b80c42ff69eb9c457948",
-                Authorization: `Bearer ${localStorage.getItem('token')}`
+                Authorization: `Bearer ${localStorage.getItem("access_token")}`
             },
             params: data
         })
@@ -26,7 +26,7 @@ export const vacanciesApi = {
         return instance.get<VacancyType>(`vacancies/${data.id}`, {
             headers: {
                 "X-Api-App-Id": "v3.r.137440105.ffdbab114f92b821eac4e21f485343924a773131.06c3bdbb8446aeb91c35b80c42ff69eb9c457948",
-                Authorization: `Bearer ${localStorage.getItem('token')}`
+                Authorization: `Bearer ${localStorage.getItem("access_token")}`
             },
         })
     },

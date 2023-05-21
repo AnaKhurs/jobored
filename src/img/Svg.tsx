@@ -33,6 +33,14 @@ const Svg: FC<Props> = memo(({iconName}) => {
                     d="M2.47891 5.78C3.85891 5.78 4.95891 4.7 4.95891 3.34C4.95891 1.96 3.85891 0.879999 2.47891 0.879999C1.11891 0.879999 0.0389063 1.96 0.0389063 3.34C0.0389063 4.7 1.11891 5.78 2.47891 5.78Z"
                     fill="#7B7C88"/>
             </svg>
+        case "iconX":
+            return <svg xmlns="http://www.w3.org/2000/svg" className="icon icon-tabler icon-tabler-x" width="24"
+                        height="24" viewBox="0 0 24 24" strokeWidth="2" stroke="currentColor" fill="none"
+                        strokeLinecap="round" strokeLinejoin="round">
+                <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
+                <path d="M18 6l-12 12"/>
+                <path d="M6 6l12 12"/>
+            </svg>
         case "location":
             return <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
                 <path
