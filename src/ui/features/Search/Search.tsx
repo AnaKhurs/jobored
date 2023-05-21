@@ -1,18 +1,21 @@
 import React, {ChangeEvent, memo, useCallback, useState} from "react";
-import {useAppSelector} from "../../../bll/store";
+import {useAppDispatch, useAppSelector} from "../../../bll/store";
 import {Button, Group, Input, rem} from "@mantine/core";
 import Svg from "../../../img/Svg";
 import {useStyles} from "./styles";
+import {setPage, setSearchValue} from "../../../bll/vacancies-reducer";
 
-type PropsType = {
-    onSetSearch: (keyword: string) => void
-}
-
-export const Search = memo(({onSetSearch}: PropsType) => {
+export const Search = memo(() => {
 
     console.log("Search")
 
     const {classes} = useStyles();
+    const dispatch = useAppDispatch();
+
+    const onSetSearch = useCallback((keyword: string) => {
+        dispatch(setSearchValue(keyword));
+        dispatch(setPage(0));
+    }, [dispatch]);
 
     const {keyword} = useAppSelector(state => state.vacancies.vacanciesData);
     const [value, setValue] = useState<string>(keyword || "");

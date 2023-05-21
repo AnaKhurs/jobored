@@ -1,17 +1,25 @@
-import React, {memo, useCallback, useMemo, useState} from "react";
-import {useAppSelector} from "../../../bll/store";
+import React, {memo, useCallback, useEffect, useMemo, useState} from "react";
+import {useAppDispatch, useAppSelector} from "../../../bll/store";
+import {setFilter, setPage} from "../../../bll/vacancies-reducer";
+import {getCatalogues} from "../../../bll/catalogues-reducer";
 import {Button, Flex, NumberInput, Paper, rem, Select, Text} from "@mantine/core";
-
-import {useStyles} from "./styles";
 import Svg from "../../../img/Svg";
+import {useStyles} from "./styles";
 
-type PropsType = {
-    onSetFilter: (keyCatalog?: number, payment_from?: number | "", payment_to?: number | "") => void
-}
-
-export const Filter = memo(({onSetFilter}: PropsType) => {
+export const Filter = memo(() => {
 
     console.log("Filter")
+
+    const dispatch = useAppDispatch();
+
+    const onSetFilter = useCallback((catalogues?: number, payment_from?: number | '', payment_to?: number | '') => {
+        dispatch(setFilter({payment_to, payment_from, catalogues}));
+        dispatch(setPage(0));
+    }, [dispatch]);
+
+    useEffect(() => {
+        dispatch(getCatalogues())
+    }, [dispatch]);
 
     const {classes} = useStyles();
 

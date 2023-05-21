@@ -36,7 +36,7 @@ const vacanciesSlice = createSlice({
         },
         reducers: {
             setFilter(state, action: PayloadAction<{ payment_to?: number | '', payment_from?: number | '', catalogues?: number }>) {
-                state.vacanciesData.payment_to = action.payload.payment_to; //toDo
+                state.vacanciesData.payment_to = action.payload.payment_to;
                 state.vacanciesData.payment_from = action.payload.payment_from;
                 state.vacanciesData.catalogues = action.payload.catalogues;
             },

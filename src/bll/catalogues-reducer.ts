@@ -21,7 +21,7 @@ const cataloguesSlice = createSlice({
 //Thunk
 export const getCatalogues = createAsyncThunk(
     "catalogues/getCatalogues",
-    async (data: any, {dispatch, rejectWithValue}) => {
+    async (_, {dispatch, rejectWithValue}) => {
         dispatch(setAppStatus("loading"))
         try {
             const res = await cataloguesApi.getCatalogues()

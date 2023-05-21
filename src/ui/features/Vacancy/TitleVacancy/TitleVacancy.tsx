@@ -6,7 +6,6 @@ import {PATH} from "../../../../utils/paths";
 import {FavoriteButton} from "../../FavoriteButton/FavoriteButton";
 import {Anchor, Flex, Text} from "@mantine/core";
 
-
 type PropsType = {
     profession: string
     id: number
