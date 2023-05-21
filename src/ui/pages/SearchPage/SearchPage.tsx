@@ -53,17 +53,19 @@ export const SearchPage = memo(() => {
         dispatch(setPage(selected));
     }, [dispatch]);
 
-    const totalPages = total >= 500 ? 500 : total;
-    const pageCount = Math.ceil(totalPages / count);
+    const totalPages = total && total >= 500 ? 500 : total;
+    const pageCount = totalPages && Math.ceil(totalPages / count);
 
     if (!isLoaded) return <Preloader/>
+
+    console.log("vacancies", vacancies)
 
     return (
         <Flex justify={"center"}>
             <Filter/>
             <Box>
                 <Search/>
-                {vacancies.length === 0
+                {!vacancies
                     ? <Paper className={classes.wrapper}>
                         <Text fz="lg" fw={"bold"}>Ничего не нашлось.</Text>
                         <Text fz="md">Попробуйте изменить условия поиска</Text>
@@ -76,7 +78,7 @@ export const SearchPage = memo(() => {
                                        nextLabel={<Svg iconName="arrow"/>}
                                        pageRangeDisplayed={3}
                                        marginPagesDisplayed={1}
-                                       pageCount={pageCount}
+                                       pageCount={pageCount ?? 0}
                                        previousLabel={<Svg iconName="arrow"/>}
                                        renderOnZeroPageCount={null}
                                        forcePage={page}

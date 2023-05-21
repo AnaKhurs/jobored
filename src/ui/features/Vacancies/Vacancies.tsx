@@ -22,8 +22,8 @@ export const Vacancies = memo(({vacancies}: PropsType) => {
         )
     }, [vacancies])
 
-    const rerenderVacanciesWithFavorites = useCallback((id: number, favorite: boolean) => {
-        setVacanciesWithFavorites(prev => prev.map(el => el.id === id ? {...el, favorite: favorite} : el))
+    const rerenderVacanciesWithFavorites = useCallback((id?: number, favorite?: boolean) => {
+        favorite && setVacanciesWithFavorites(prev => prev.map(el => el.id === id ? {...el, favorite: favorite} : el))
     }, [])
 
     return (

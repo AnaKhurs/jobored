@@ -7,7 +7,7 @@ export const getFavorites = () => {
     return JSON.parse(favorites);
 };
 
-export const addFavorite = (favoriteVacancy: VacancyType) => {
+export const addFavorite = (favoriteVacancy?: VacancyType) => {
     const favorites = getFavorites();
     if (favorites === null) {
         localStorage.setItem("favorites", JSON.stringify([favoriteVacancy]));

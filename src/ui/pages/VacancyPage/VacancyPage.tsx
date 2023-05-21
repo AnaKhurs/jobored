@@ -1,7 +1,7 @@
 import React, {memo, useCallback, useEffect, useState} from "react";
 import {useParams} from "react-router-dom";
 import {useAppDispatch, useAppSelector} from "../../../bll/store";
-import {getVacancy} from "../../../bll/vacancies-reducer";
+import {cleanVacancy, getVacancy} from "../../../bll/vacancies-reducer";
 import {Vacancy} from "../../features/Vacancy/Vacancy";
 import {Flex, Loader, Paper} from "@mantine/core";
 import {useStyles} from "./styles";
@@ -16,10 +16,9 @@ export const VacancyPage = memo(() => {
     const {idVacancy} = useParams();
     const {
         vacancy,
-        isLoaded
     } = useAppSelector(state => state.vacancies);
 
-    const [vacancyWithFavorites, setVacancyWithFavorites] = useState<VacancyType>(vacancy) //todo
+    const [vacancyWithFavorites, setVacancyWithFavorites] = useState<VacancyType>()
 
     useEffect(() => {
         dispatch(getVacancy({id: idVacancy}))
@@ -27,23 +26,22 @@ export const VacancyPage = memo(() => {
 
     useEffect(() => {
         const favorites: VacancyType[] = getFavorites();
-        setVacancyWithFavorites(
+        vacancy && setVacancyWithFavorites(
             favorites.some((f) => vacancy.id === f.id) ? {...vacancy, favorite: true} : vacancy)
     }, [vacancy])
 
-    const rerenderVacancyWithFavorite = useCallback((id: number, favorite: boolean) => {
-        setVacancyWithFavorites({...vacancy, favorite: favorite})
+    useEffect(() => {
+        return () => {
+            dispatch(cleanVacancy())
+        }
+    }, [dispatch])
+
+
+    const rerenderVacancyWithFavorite = useCallback((id?: number, favorite?: boolean) => {
+        vacancy && favorite && setVacancyWithFavorites({...vacancy, favorite: favorite})
     }, [vacancy])
 
-    if (!isLoaded) {
-        dispatch(getVacancy({id: idVacancy}))
-        return <Flex direction="row" align="center" h="80vh">
-            <Loader size="xl" m="0 auto"/>
-        </Flex>
-    }
-
-    if (!vacancy.town?.title) {
-
+    if (!vacancy) {
         dispatch(getVacancy({id: idVacancy}))
         return <Flex direction="row" align="center" h="80vh">
             <Loader size="xl" m="0 auto"/>

@@ -10,6 +10,9 @@ export const Filter = memo(() => {
 
     console.log("Filter")
 
+    const {classes} = useStyles();
+
+    const catalogues = useAppSelector(state => state.catalogues.catalogues);
     const dispatch = useAppDispatch();
 
     const onSetFilter = useCallback((catalogues?: number, payment_from?: number | '', payment_to?: number | '') => {
@@ -18,12 +21,8 @@ export const Filter = memo(() => {
     }, [dispatch]);
 
     useEffect(() => {
-        dispatch(getCatalogues())
-    }, [dispatch]);
-
-    const {classes} = useStyles();
-
-    const catalogues = useAppSelector(state => state.catalogues.catalogues);
+        !catalogues && dispatch(getCatalogues())
+    }, [catalogues, dispatch]);
 
     const [keyCatalog, setKeyCatalog] = useState<string>();
     const [payment_from, setPayment_from] = useState<number | "">();

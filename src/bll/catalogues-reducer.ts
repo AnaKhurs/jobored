@@ -2,11 +2,17 @@ import {createAsyncThunk, createSlice} from "@reduxjs/toolkit";
 import {setAppError, setAppStatus} from "./app-reducer";
 import {CatalogType, cataloguesApi} from "../dal/cataloguesApi";
 
+type InitialStateType = {
+    catalogues: CatalogType[] | undefined
+}
+
+const initialState: InitialStateType = {
+    catalogues: undefined
+}
+
 const cataloguesSlice = createSlice({
         name: "catalogues",
-        initialState: {
-            catalogues: [] as CatalogType[],
-        },
+        initialState: initialState,
         reducers: {},
         extraReducers: builder => {
             builder.addCase(getCatalogues.fulfilled, (state, action) => {

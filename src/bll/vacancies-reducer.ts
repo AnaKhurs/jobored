@@ -3,37 +3,46 @@ import {setAppError, setAppStatus} from "./app-reducer";
 import {vacanciesApi, VacancyType} from "../dal/vacanciesApi";
 
 type VacanciesDataType = {
-    vacancies: VacancyType[]
+    vacancies: VacancyType[] | undefined
     published: number
     keyword: string | undefined
     payment_to: number | "" | undefined
     payment_from: number | "" | undefined
     catalogues: number | undefined
     no_agreement: number
-    total: number
+    total: number | undefined
     page: number
     count: number
 }
 
+type initialStateType = {
+    vacanciesData: VacanciesDataType,
+    isLoaded: boolean,
+    vacancy: VacancyType | undefined,
+    id: number | undefined,
+}
+
+const initialState: initialStateType = {
+    vacanciesData: {
+        vacancies: undefined,
+        published: 1,
+        keyword: undefined,
+        payment_to: undefined,
+        payment_from: undefined,
+        catalogues: undefined,
+        no_agreement: 1,
+        total: undefined,
+        page: 0,
+        count: 4,
+    },
+    isLoaded: false,
+    vacancy: undefined,
+    id: undefined,
+}
+
 const vacanciesSlice = createSlice({
         name: "vacancies",
-        initialState: {
-            vacanciesData: {
-                vacancies: [],
-                published: 1,
-                keyword: undefined,
-                payment_to: undefined,
-                payment_from: undefined,
-                catalogues: undefined,
-                no_agreement: 1, //toDo
-                total: 0,
-                page: 0,
-                count: 4,
-            } as VacanciesDataType,
-            isLoaded: false,
-            vacancy: {} as VacancyType,
-            id: 0,
-        },
+        initialState: initialState,
         reducers: {
             setFilter(state, action: PayloadAction<{ payment_to?: number | '', payment_from?: number | '', catalogues?: number }>) {
                 state.vacanciesData.payment_to = action.payload.payment_to;
@@ -95,11 +104,8 @@ export const getVacancies = createAsyncThunk(
 export const getVacancy = createAsyncThunk(
     "vacancies/getVacancy",
     async (data: any, {dispatch, rejectWithValue}) => {
-
-        /*dispatch(cleanActiveVacancy(false));*/
         dispatch(setAppStatus("loading"));
         try {
-
             const res = await vacanciesApi.getVacancy(data);
             dispatch(setAppStatus("succeeded"));
             return res.data;
