@@ -50,7 +50,6 @@ const vacanciesSlice = createSlice({
                 state.id = action.payload;
             },
             cleanVacancy(state) {
-                debugger
                 state.vacancy = {} as VacancyType;
             },
         },
@@ -96,17 +95,16 @@ export const getVacancies = createAsyncThunk(
 export const getVacancy = createAsyncThunk(
     "vacancies/getVacancy",
     async (data: any, {dispatch, rejectWithValue}) => {
-        debugger
 
         /*dispatch(cleanActiveVacancy(false));*/
         dispatch(setAppStatus("loading"));
         try {
-            debugger
+
             const res = await vacanciesApi.getVacancy(data);
             dispatch(setAppStatus("succeeded"));
             return res.data;
         } catch (e: any) {
-            debugger
+
             const error = e.response
                 ? e.response.data.error
                 : (e.message + ", Try later")

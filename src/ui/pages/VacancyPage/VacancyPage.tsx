@@ -42,8 +42,8 @@ export const VacancyPage = memo(() => {
         </Flex>
     }
 
-    if (!vacancy.town.title) {
-        debugger
+    if (!vacancy.town?.title) {
+
         dispatch(getVacancy({id: idVacancy}))
         return <Flex direction="row" align="center" h="80vh">
             <Loader size="xl" m="0 auto"/>
@@ -52,7 +52,7 @@ export const VacancyPage = memo(() => {
 
     return (
         <Flex direction={"column"} justify={"center"} align={"center"}>
-           {/* <Vacancy vacancy={vacancyWithFavorites} rerenderHandler={rerenderVacancyWithFavorite}/>*/}
+            <Vacancy vacancy={vacancyWithFavorites} rerenderHandler={rerenderVacancyWithFavorite}/>
             <Paper className={classes.wrapper}
                    dangerouslySetInnerHTML={{__html: vacancy.vacancyRichText}} //todo
             />
