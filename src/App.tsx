@@ -6,8 +6,9 @@ import {Header} from "./ui/features/Header/Header";
 import {SearchPage} from "./ui/pages/SearchPage/SearchPage";
 import {FavoritesPage} from "./ui/pages/FavoritesPage/FavoritesPage";
 import {VacancyPage} from "./ui/pages/VacancyPage/VacancyPage";
+import {ErrorPage} from "./ui/pages/ErrorPage/ErrorPage";
 import {PATH} from "./utils/paths";
-import {client_id, client_secret, hr, login, password} from "./loginData"; //todo
+import {client_id, client_secret, hr, login, password} from "./loginData";
 import {Box, Flex, Loader} from "@mantine/core";
 
 export const App = memo(() => {
@@ -36,6 +37,7 @@ export const App = memo(() => {
                 <Route path={PATH.MAIN} element={<SearchPage/>}/>
                 <Route path={PATH.FAVORITES} element={<FavoritesPage/>}/>
                 <Route path={PATH.VACANCY + '/:idVacancy'} element={<VacancyPage/>}/>
+                <Route path={PATH.ERROR} element={<ErrorPage/>}/>
             </Routes>
         </Box>
     );
