@@ -9,14 +9,10 @@ type PropsType = {
 }
 
 export const FavoriteButton = memo(({isFavorite, toggleFavorite, id}: PropsType) => {
-
-    console.log("FavoriteButton")
-
     return (
         <Button data-elem={`vacancy-${id}-shortlist-button`}
-                variant='transparent'
-                onClick={toggleFavorite}
-        >
+                variant="transparent"
+                onClick={toggleFavorite}>
             {isFavorite ? <Svg iconName="fillStar"/> : <Svg iconName="outlineStar"/>}
         </Button>
     );

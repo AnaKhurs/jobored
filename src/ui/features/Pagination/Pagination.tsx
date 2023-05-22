@@ -18,6 +18,7 @@ export const Pagination = ({
                                page,
                                totalPages,
                            }: PropsType) => {
+
     return (
         <Flex className={classes.pagination}>
             <Button onClick={prevPage} className={classes.previousClassName} disabled={page === 1}>

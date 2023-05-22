@@ -1,15 +1,14 @@
 import React, {ChangeEvent, memo, useCallback, useState} from "react";
 import {useAppDispatch, useAppSelector} from "../../../bll/store";
+import {setPage, setSearchValue} from "../../../bll/vacancies-reducer";
 import {Button, Group, Input, rem} from "@mantine/core";
 import Svg from "../../../img/Svg";
 import {useStyles} from "./styles";
-import {setPage, setSearchValue} from "../../../bll/vacancies-reducer";
 
 export const Search = memo(() => {
 
-    console.log("Search")
-
     const {classes} = useStyles();
+
     const dispatch = useAppDispatch();
     const {keyword} = useAppSelector(state => state.vacancies.vacanciesData);
 

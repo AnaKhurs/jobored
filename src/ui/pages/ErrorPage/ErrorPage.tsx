@@ -1,4 +1,4 @@
-import {Button, Container, Group, Text, Title} from '@mantine/core';
+import {Button, Container, Group, Text, Title} from "@mantine/core";
 import {useNavigate} from "react-router-dom";
 import {PATH} from "../../../utils/paths";
 import {useStyles} from "./styles";
@@ -6,7 +6,7 @@ import {useStyles} from "./styles";
 export const ErrorPage = () => {
 
     const {classes} = useStyles();
-    const navigate = useNavigate()
+    const navigate = useNavigate();
 
     return (
         <Container className={classes.root}>

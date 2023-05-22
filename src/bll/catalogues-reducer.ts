@@ -1,5 +1,5 @@
 import {createAsyncThunk, createSlice} from "@reduxjs/toolkit";
-import {setAppError, setAppStatus} from "./app-reducer";
+import {setAppError} from "./app-reducer";
 import {CatalogType, cataloguesApi} from "../dal/cataloguesApi";
 
 type InitialStateType = {
@@ -28,10 +28,8 @@ const cataloguesSlice = createSlice({
 export const getCatalogues = createAsyncThunk(
     "catalogues/getCatalogues",
     async (_, {dispatch, rejectWithValue}) => {
-        dispatch(setAppStatus("loading"))
         try {
             const res = await cataloguesApi.getCatalogues()
-            dispatch(setAppStatus("succeeded"))
             return res.data
         } catch (e: any) {
             const error = e.response
@@ -39,7 +37,6 @@ export const getCatalogues = createAsyncThunk(
                 : (e.message + ", Try later")
             console.log({...e})
             dispatch(setAppError(error))
-            dispatch(setAppStatus("failed"))
             return rejectWithValue({})
         }
     }

@@ -5,9 +5,12 @@ import {Flex, Group, Box} from "@mantine/core";
 import Svg from "../../../img/Svg";
 import {useStyles} from "./styles";
 
-export const Header = memo(() => {
+const data = [
+    {label: "Поиск Вакансий", path: PATH.MAIN},
+    {label: "Избранное", path: PATH.FAVORITES},
+];
 
-    console.log("Header")
+export const Header = memo(() => {
 
     const {classes} = useStyles();
 
@@ -20,11 +23,6 @@ export const Header = memo(() => {
         paddingTop: "29px",
     })
 
-    const data = [
-        {label: "Поиск Вакансий", path: PATH.MAIN},
-        {label: "Избранное", path: PATH.FAVORITES},
-    ];
-
     const items = data.map((item) => (
         <NavLink to={item.path}
                  key={item.label}
@@ -32,17 +30,16 @@ export const Header = memo(() => {
         >
             {item.label}
         </NavLink>
-
     ));
 
     return (
         <Box bg="#FFFFFF" mb={40}>
-            <Flex justify={"space-around"} className="wrapper">
+            <Flex justify="space-around">
                 <Group m="0 auto">
-                <NavLink to={PATH.MAIN}
-                         className={classes.logo}>
-                    <Svg iconName="logo"/>
-                </NavLink>
+                    <NavLink to={PATH.MAIN}
+                             className={classes.logo}>
+                        <Svg iconName="logo"/>
+                    </NavLink>
                 </Group>
                 <Group m="0 auto">{items}</Group>
             </Flex>

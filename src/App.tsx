@@ -10,12 +10,12 @@ import {ErrorPage} from "./ui/pages/ErrorPage/ErrorPage";
 import {PATH} from "./utils/paths";
 import {client_id, client_secret, hr, login, password} from "./loginData";
 import {Box, Flex, Loader} from "@mantine/core";
-import './App.scss';
+import {ErrorSnackbar} from "./ui/features/ErrorSnackbar/ErrorSnackBar";
 
 export const App = memo(() => {
 
     const dispatch = useAppDispatch();
-    const {isInitialized} = useAppSelector(state => state.app);
+    const {isInitialized, error} = useAppSelector(state => state.app);
 
     useEffect(() => {
         const nowData = new Date().getTime() / 1000;
@@ -56,6 +56,7 @@ export const App = memo(() => {
                     <Route path={PATH.ERROR} element={<ErrorPage/>}/>
                 </Routes>
             </>}
+            {error && <ErrorSnackbar/>}
         </Box>
     );
 })

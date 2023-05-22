@@ -18,8 +18,6 @@ export const Vacancy = memo(({
                                  rerenderHandler,
                              }: PropsType) => {
 
-    console.log("Vacancy")
-
     const {classes} = useStyles();
 
     const toggleFavorite = useCallback(() => {
@@ -29,7 +27,7 @@ export const Vacancy = memo(({
             addFavorite(vacancy);
         }
         rerenderHandler(vacancy?.id, !vacancy?.favorite);
-    }, [rerenderHandler, vacancy]);
+    }, [rerenderHandler, vacancy])
 
     return (
         <Paper className={classes.wrapper} data-elem={`vacancy-${vacancy?.id}`}>

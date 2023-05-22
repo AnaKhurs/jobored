@@ -4,7 +4,6 @@ import {PATH} from "../../../../utils/paths";
 import {Button, Flex, Text} from "@mantine/core";
 import Svg from "../../../../img/Svg";
 
-
 export const EmptyFavorites = memo(() => {
 
     const navigate = useNavigate();

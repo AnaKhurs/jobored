@@ -1,10 +1,10 @@
-import {instance} from './instance';
+import {instance} from "./instance";
 
 export type GetVacanciesPayloadType = {
     published?: number,
     keyword?: string,
-    payment_from?: number | '' | null,
-    payment_to?: number | '' | null,
+    payment_from?: number | "" | null,
+    payment_to?: number | "" | null,
     catalogues?: number | null,
     no_agreement?: number,
     page?: number,
@@ -32,7 +32,6 @@ export const vacanciesApi = {
     },
 
 }
-
 
 export type VacancyType = {
     profession: string

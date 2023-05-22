@@ -7,7 +7,6 @@ import {EmptyFavorites} from "./EmptyFavorites/EmptyFavorites";
 import {Vacancies} from "../../features/Vacancies/Vacancies";
 import {Flex} from "@mantine/core";
 
-
 export const FavoritesPage = memo(() => {
 
     const favorites: VacancyType[] = getFavorites();
@@ -29,7 +28,7 @@ export const FavoritesPage = memo(() => {
         return <EmptyFavorites/>
     }
 
-    const paginationArray = favorites.slice(firstContentIndex, lastContentIndex)
+    const paginationArray = favorites.slice(firstContentIndex, lastContentIndex);
 
     return (
         <Flex direction="column" align="center">

@@ -8,8 +8,6 @@ import {useStyles} from "./styles";
 
 export const Filter = memo(() => {
 
-    console.log("Filter")
-
     const {classes} = useStyles();
 
     const catalogues = useAppSelector(state => state.catalogues.catalogues);
@@ -36,7 +34,6 @@ export const Filter = memo(() => {
         }
         return [];
     }, [catalogues]);
-
 
     const onChangeSelectHandler = useCallback((value: string) => {
         setKeyCatalog(value);

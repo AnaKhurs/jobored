@@ -1,5 +1,5 @@
 import {createAsyncThunk, createSlice, PayloadAction} from "@reduxjs/toolkit";
-import {setAppError, setAppStatus} from "./app-reducer";
+import {setAppError} from "./app-reducer";
 import {vacanciesApi, VacancyType} from "../dal/vacanciesApi";
 
 type VacanciesDataType = {
@@ -84,15 +84,12 @@ const vacanciesSlice = createSlice({
 export const getVacancies = createAsyncThunk(
     "vacancies/getVacancies",
     async (data: any, {dispatch, rejectWithValue}) => {
-        dispatch(setAppStatus("loading"));
         try {
             const res = await vacanciesApi.getVacancies(data);
-            dispatch(setAppStatus("succeeded"));
             return res.data;
         } catch (e: any) {
             const error = e.response.data + ". Try later"
             dispatch(setAppError(error))
-            dispatch(setAppStatus("failed"))
             return rejectWithValue({})
         }
     }
@@ -101,15 +98,12 @@ export const getVacancies = createAsyncThunk(
 export const getVacancy = createAsyncThunk(
     "vacancies/getVacancy",
     async (data: any, {dispatch, rejectWithValue}) => {
-        dispatch(setAppStatus("loading"));
         try {
             const res = await vacanciesApi.getVacancy(data);
-            dispatch(setAppStatus("succeeded"));
             return res.data;
         } catch (e: any) {
             const error = e.response.data + ". Try later"
             dispatch(setAppError(error))
-            dispatch(setAppStatus("failed"))
             return rejectWithValue({})
         }
     }
@@ -117,4 +111,3 @@ export const getVacancy = createAsyncThunk(
 
 export const vacanciesReducer = vacanciesSlice.reducer;
 export const {setFilter, setPage, setSearchValue, cleanVacancy, cleanVacancies} = vacanciesSlice.actions;
-
