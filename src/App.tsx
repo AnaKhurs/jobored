@@ -1,4 +1,4 @@
-import React, {memo} from "react";
+import React, {memo, useEffect} from "react";
 import {Route, Routes} from "react-router-dom";
 import {useAppDispatch, useAppSelector} from "./bll/store";
 import {initializeApp, refreshApp} from "./bll/app-reducer";
@@ -10,16 +10,27 @@ import {ErrorPage} from "./ui/pages/ErrorPage/ErrorPage";
 import {PATH} from "./utils/paths";
 import {client_id, client_secret, hr, login, password} from "./loginData";
 import {Box, Flex, Loader} from "@mantine/core";
+import './App.scss';
 
 export const App = memo(() => {
 
     const dispatch = useAppDispatch();
     const {isInitialized} = useAppSelector(state => state.app);
 
-    const nowData = parseInt(new Date().getTime().toString().slice(0, -3));
-
-    const refresh_token = localStorage.getItem("refresh_token")
-    const ttl = localStorage.getItem("ttl")
+    useEffect(() => {
+        const nowData = new Date().getTime() / 1000;
+        const refresh_token = localStorage.getItem("refresh_token");
+        const ttl = localStorage.getItem("ttl");
+        if (ttl && refresh_token) {
+            if (+ttl <= nowData) {
+                dispatch(refreshApp({
+                    refresh_token: refresh_token,
+                    client_id: client_id,
+                    client_secret: client_secret,
+                }));
+            }
+        }
+    }, [dispatch]);
 
     if (!isInitialized) {
         dispatch(initializeApp({
@@ -32,19 +43,6 @@ export const App = memo(() => {
         return <Flex direction="row" align="center" h="100vh">
             <Loader size="xl" m="0 auto"/>
         </Flex>
-    }
-
-    if (ttl && refresh_token) {
-        if (+ttl <= nowData) {
-            dispatch(refreshApp({
-                refresh_token: refresh_token,
-                client_id: client_id,
-                client_secret: client_secret,
-            }));
-            return <Flex direction="row" align="center" h="100vh">
-                <Loader size="xl" m="0 auto"/>
-            </Flex>
-        }
     }
 
     return (

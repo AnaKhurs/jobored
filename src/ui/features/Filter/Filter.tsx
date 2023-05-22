@@ -63,7 +63,7 @@ export const Filter = memo(() => {
     }, [onSetFilter])
 
     return (
-        <Paper className={classes.wrapper}>
+        <Paper className={classes.wrapper} mr={28}>
             <Flex justify="space-between">
                 <Text fz="lg" fw={700} color="#232134">Фильтры</Text>
                 <Button className={classes.buttonReset}

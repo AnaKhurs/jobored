@@ -4,7 +4,7 @@ import {authAPI} from "../dal/authApi";
 const initialState: InitStateType = {
     error: null,
     status: "loading",
-    isInitialized: true,
+    isInitialized: false,
 }
 
 const appSlice = createSlice({

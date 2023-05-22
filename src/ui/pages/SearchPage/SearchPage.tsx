@@ -7,17 +7,21 @@ import {Search} from "../../features/Search/Search";
 import {Vacancies} from "../../features/Vacancies/Vacancies";
 import {Preloader} from "../../features/Preloader/Preloader";
 import ReactPaginate from "react-paginate";
-import {Box, Flex, Paper, Text} from "@mantine/core";
-import Svg from "../../../img/Svg";
-import classes from "./SearchPage.module.scss";
+import {Box, Flex, Paper, Text, createStyles} from "@mantine/core";
+import {useStyles} from "./styles";
+import { useDisclosure, useMediaQuery } from "@mantine/hooks";
 import {ErrorSnackbar} from "../../features/ErrorSnackbar/ErrorSnackBar";
+import Svg from "../../../img/Svg";
+
+
+
 
 export const SearchPage = memo(() => {
 
-    console.log("SearchPage")
+    const { classes } = useStyles();
+    const matches = useMediaQuery("(max-width: 930px)");
 
     const dispatch = useAppDispatch();
-
     const {
         vacanciesData: {
             vacancies,
@@ -31,7 +35,6 @@ export const SearchPage = memo(() => {
             total,
         },
     } = useAppSelector(state => state.vacancies);
-
     const {error} = useAppSelector(state => state.app);
 
     const fetchData: GetVacanciesPayloadType = useMemo(() => {
@@ -67,11 +70,11 @@ export const SearchPage = memo(() => {
 
 
     return (
-        <Flex justify={"center"}>
+        <Flex justify={"center"} className="wrapper">
             <Filter/>
             <Box>
                 <Search/>
-                {vacancies?.length === 0 && <Paper className={classes.wrapper}>
+                {vacancies?.length === 0 && <Paper className={classes.container}>
                     <Text fz="lg" fw={"bold"}>Ничего не нашлось.</Text>
                     <Text fz="md">Попробуйте изменить условия поиска</Text>
                 </Paper>}
