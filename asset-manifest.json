@@ -1,0 +1,15 @@
+{
+  "files": {
+    "main.css": "/jobored/static/css/main.061ac9a5.css",
+    "main.js": "/jobored/static/js/main.9416256e.js",
+    "static/js/787.dedbfeae.chunk.js": "/jobored/static/js/787.dedbfeae.chunk.js",
+    "index.html": "/jobored/index.html",
+    "main.061ac9a5.css.map": "/jobored/static/css/main.061ac9a5.css.map",
+    "main.9416256e.js.map": "/jobored/static/js/main.9416256e.js.map",
+    "787.dedbfeae.chunk.js.map": "/jobored/static/js/787.dedbfeae.chunk.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.061ac9a5.css",
+    "static/js/main.9416256e.js"
+  ]
+}
