@@ -6,14 +6,19 @@ import {Filter} from "../../features/Filter/Filter";
 import {Search} from "../../features/Search/Search";
 import {Vacancies} from "../../features/Vacancies/Vacancies";
 import {Preloader} from "../../features/Preloader/Preloader";
+import {ModalWrapper} from "../../features/ModalWrapper/ModalWrapper";
 import ReactPaginate from "react-paginate";
-import {Box, Flex, Paper, Text} from "@mantine/core";
+import {useDisclosure, useMediaQuery} from "@mantine/hooks";
+import {Box, Flex, Paper, Text, Button} from "@mantine/core";
 import Svg from "../../../img/Svg";
 import {useStyles} from "./styles";
 
 export const SearchPage = memo(() => {
 
     const {classes} = useStyles();
+    const matches = useMediaQuery("(max-width: 780px)");
+
+    const [opened, {open, close}] = useDisclosure(false);
 
     const dispatch = useAppDispatch();
     const {
@@ -60,9 +65,17 @@ export const SearchPage = memo(() => {
     if (!vacancies) return <Preloader/>
 
     return (
-        <Flex justify={"center"} className="wrapper">
-            <Filter/>
-            <Box>
+        <Flex justify="center">
+
+            <ModalWrapper mathes={matches} opened={opened} onClose={close}>
+                <Filter onClose={close}/>
+            </ModalWrapper>
+
+            <Box className={classes.buttonWrapper}>
+                <Button onClick={open} className={classes.button}>Фильтры</Button>
+            </Box>
+
+            <Box className={classes.resultsWrapper}>
                 <Search/>
                 {
                     vacancies?.length === 0 &&

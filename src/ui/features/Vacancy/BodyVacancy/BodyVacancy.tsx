@@ -42,18 +42,17 @@ export const BodyVacancy = memo(({
     return (
         <>
             <Group m="13px 0">
-                <Text fz="md"
-                      fw={600}
-                      color="#232134">
+                <Text fz="md" className={classes.salary}>
                     {getCurrencyDescription(paymentFrom, paymentTo, currency)}
                 </Text>
                 <Svg iconName="dot"/>
-                <Text fz="md"
-                      color="#232134">{typeOfWork}</Text>
+                <Text fz="md" className={classes.typeOfWork}>
+                    {typeOfWork}
+                </Text>
             </Group>
             <Group className={classes.location}>
                 <Svg iconName="location"/>
-                <Text>{townTitle}</Text>
+                <Text className={classes.townTitle}>{townTitle}</Text>
             </Group>
         </>
     );

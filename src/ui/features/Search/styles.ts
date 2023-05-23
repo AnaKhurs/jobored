@@ -1,6 +1,6 @@
 import {createStyles} from "@mantine/core";
 
-export const useStyles = createStyles(() => ({
+export const useStyles = createStyles((theme) => ({
     wrapper: {
         display: "flex",
         flexDirection: "row",
@@ -11,5 +11,8 @@ export const useStyles = createStyles(() => ({
         borderRadius: "8px",
         background: "#FFFFFF",
         flexWrap: "nowrap",
+        [theme.fn.smallerThan(600)]: {
+            margin: "0 10px",
+        },
     },
 }));

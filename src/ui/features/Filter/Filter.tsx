@@ -6,7 +6,11 @@ import {Button, Flex, NumberInput, Paper, rem, Select, Text} from "@mantine/core
 import Svg from "../../../img/Svg";
 import {useStyles} from "./styles";
 
-export const Filter = memo(() => {
+type PropsType = {
+    onClose: () => void
+}
+
+export const Filter = memo(({onClose}: PropsType) => {
 
     const {classes} = useStyles();
 
@@ -50,7 +54,8 @@ export const Filter = memo(() => {
     const onClickSetFilter = useCallback(() => {
         const catalogues = keyCatalog ? +keyCatalog : undefined;
         onSetFilter(catalogues, payment_from, payment_to);
-    }, [keyCatalog, onSetFilter, payment_from, payment_to]);
+        onClose();
+    }, [keyCatalog, onClose, onSetFilter, payment_from, payment_to]);
 
     const onClickResetFilter = useCallback(() => {
         setKeyCatalog("");
@@ -60,7 +65,7 @@ export const Filter = memo(() => {
     }, [onSetFilter])
 
     return (
-        <Paper className={classes.wrapper} mr={28}>
+        <Paper className={classes.wrapper}>
             <Flex justify="space-between">
                 <Text fz="lg" fw={700} color="#232134">Фильтры</Text>
                 <Button className={classes.buttonReset}

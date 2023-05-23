@@ -6,8 +6,11 @@ import {VacancyType} from "../../../dal/vacanciesApi";
 import {EmptyFavorites} from "./EmptyFavorites/EmptyFavorites";
 import {Vacancies} from "../../features/Vacancies/Vacancies";
 import {Flex} from "@mantine/core";
+import {useStyles} from "./styles";
 
 export const FavoritesPage = memo(() => {
+
+    const {classes} = useStyles();
 
     const favorites: VacancyType[] = getFavorites();
 
@@ -31,7 +34,7 @@ export const FavoritesPage = memo(() => {
     const paginationArray = favorites.slice(firstContentIndex, lastContentIndex);
 
     return (
-        <Flex direction="column" align="center">
+        <Flex direction="column" align="center" className={classes.resultsWrapper}>
             <Vacancies vacancies={paginationArray}/>
             <Pagination prevPage={prevPage}
                         nextPage={nextPage}

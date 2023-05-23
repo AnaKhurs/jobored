@@ -1,6 +1,40 @@
 import {createStyles} from "@mantine/core";
 
-export const useStyles = createStyles(() => ({
+export const useStyles = createStyles((theme) => ({
+
+    buttonWrapper: {
+        width: "100%",
+        height: "7vh",
+        display: "none",
+        position: "fixed",
+        zIndex: 10,
+        bottom: 0,
+        left: "50%",
+        margin: 18,
+        transform: "translate(-50%, 0)",
+        [theme.fn.smallerThan(780)]: {
+            display: "flex",
+            justifyContent: "start",
+            alignItems: "start",
+        },
+    },
+
+    button: {
+        fontSize: "1rem",
+        width: "130px",
+        height: "40px",
+        borderRadius: "8px",
+    },
+
+    resultsWrapper: {
+        margin: "0 28px",
+        [theme.fn.smallerThan(780)]: {
+            margin: "0 18px",
+        },
+        [theme.fn.smallerThan(600)]: {
+            margin: 0,
+        },
+    },
 
     container: {
         borderRadius: 12,

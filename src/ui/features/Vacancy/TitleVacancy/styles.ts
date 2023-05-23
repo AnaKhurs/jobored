@@ -9,6 +9,15 @@ export const useStyles = createStyles(() => ({
 
         "&:hover": {
             color: "#4263EB",
-        }
+        },
+
+        [`@media (max-width: 600px)`]: {
+            fontSize: "1.5rem",
+        },
+    },
+    text: {
+        [`@media (max-width: 600px)`]: {
+            fontSize: "1.5rem",
+        },
     },
 }));

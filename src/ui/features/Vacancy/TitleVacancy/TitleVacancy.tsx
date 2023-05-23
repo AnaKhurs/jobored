@@ -29,7 +29,8 @@ export const TitleVacancy = memo(({
                 ? <Link to={PATH.VACANCY + `/${id}`} className={classes.link}>{profession}</Link>
                 : <Text fz="xl"
                         fw={700}
-                        color="#232134">{profession}</Text>
+                        color="#232134"
+                        className={classes.text}>{profession}</Text>
             }
             <FavoriteButton toggleFavorite={toggleFavorite} isFavorite={favorite} id={id}/>
         </Flex>
