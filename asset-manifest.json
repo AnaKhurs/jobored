@@ -1,15 +1,15 @@
 {
   "files": {
     "main.css": "/jobored/static/css/main.061ac9a5.css",
-    "main.js": "/jobored/static/js/main.337533e6.js",
+    "main.js": "/jobored/static/js/main.09bcd013.js",
     "static/js/787.dedbfeae.chunk.js": "/jobored/static/js/787.dedbfeae.chunk.js",
     "index.html": "/jobored/index.html",
     "main.061ac9a5.css.map": "/jobored/static/css/main.061ac9a5.css.map",
-    "main.337533e6.js.map": "/jobored/static/js/main.337533e6.js.map",
+    "main.09bcd013.js.map": "/jobored/static/js/main.09bcd013.js.map",
     "787.dedbfeae.chunk.js.map": "/jobored/static/js/787.dedbfeae.chunk.js.map"
   },
   "entrypoints": [
     "static/css/main.061ac9a5.css",
-    "static/js/main.337533e6.js"
+    "static/js/main.09bcd013.js"
   ]
 }
