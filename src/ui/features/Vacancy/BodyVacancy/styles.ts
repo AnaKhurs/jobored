@@ -1,17 +1,17 @@
 import {createStyles} from "@mantine/core";
 
-export const useStyles = createStyles(() => ({
+export const useStyles = createStyles((theme) => ({
     salary: {
         fontWeight: 600,
         color: "#232134",
-        [`@media (max-width: 600px)`]: {
-            fontSize: "1.2rem",
+        [theme.fn.smallerThan(600)]: {
+            fontSize: "1.1rem",
         },
     },
     typeOfWork: {
         color: "#232134",
-        [`@media (max-width: 600px)`]: {
-            fontSize: "1.2rem",
+        [theme.fn.smallerThan(600)]: {
+            fontSize: "1.1rem",
         },
     },
     location: {
@@ -19,8 +19,8 @@ export const useStyles = createStyles(() => ({
     },
     townTitle: {
         color: "#232134",
-        [`@media (max-width: 600px)`]: {
-            fontSize: "1.2rem",
+        [theme.fn.smallerThan(600)]: {
+            fontSize: "1.1rem",
         },
     },
 }));

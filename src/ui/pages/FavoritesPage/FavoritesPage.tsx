@@ -34,7 +34,7 @@ export const FavoritesPage = memo(() => {
     const paginationArray = favorites.slice(firstContentIndex, lastContentIndex);
 
     return (
-        <Flex direction="column" align="center" className={classes.resultsWrapper}>
+        <Flex direction="column" className={classes.resultsWrapper}>
             <Vacancies vacancies={paginationArray}/>
             <Pagination prevPage={prevPage}
                         nextPage={nextPage}

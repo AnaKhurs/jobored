@@ -12,12 +12,12 @@ export const useStyles = createStyles(() => ({
         },
 
         [`@media (max-width: 600px)`]: {
-            fontSize: "1.5rem",
+            fontSize: "1.2rem",
         },
     },
     text: {
         [`@media (max-width: 600px)`]: {
-            fontSize: "1.5rem",
+            fontSize: "1.2rem",
         },
     },
 }));

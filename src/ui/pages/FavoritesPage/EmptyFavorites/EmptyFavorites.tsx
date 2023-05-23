@@ -15,7 +15,7 @@ export const EmptyFavorites = memo(() => {
     return (
         <Flex direction="column" align="center" justify="center" h="75vh">
             <Svg iconName="void"/>
-            <Text m="32px 0" fw={700} fz="xl" color="#343A40">Упс, здесь еще ничего нет!</Text>
+            <Text m="32px 0" fw={700} fz="xl" color="#343A40" align="center">Упс, здесь еще ничего нет!</Text>
             <Button variant="light" onClick={onClickToSearchPage}>Поиск Вакансий</Button>
         </Flex>
     );

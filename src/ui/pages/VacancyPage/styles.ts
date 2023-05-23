@@ -8,7 +8,7 @@ export const useStyles = createStyles(() => ({
         padding: "20px",
         height: "100%",
         margin: "4px 0 40px",
-        width: "773px",
+        maxWidth: "773px",
         color: "#232134",
 
         b: {

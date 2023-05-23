@@ -80,7 +80,7 @@ export const SearchPage = memo(() => {
                 {
                     vacancies?.length === 0 &&
                     <Paper className={classes.container}>
-                        <Text fz="lg" fw={"bold"}>Ничего не нашлось.</Text>
+                        <Text fz="lg" fw="bold">Ничего не нашлось.</Text>
                         <Text fz="md">Попробуйте изменить условия поиска</Text>
                     </Paper>
                 }

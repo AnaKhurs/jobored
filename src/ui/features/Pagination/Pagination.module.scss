@@ -2,6 +2,7 @@
   cursor: pointer;
   justify-content: center;
   align-items: center;
+  margin-bottom: 15px;
 
   .pageClassName {
     min-width: 32px;
@@ -16,6 +17,9 @@
     font-style: normal;
     font-weight: 400;
     font-size: 16px;
+    @media (max-width: 400px) {
+      margin: 3px;
+    };
   }
 
   .activeClassName {
@@ -31,6 +35,9 @@
     font-style: normal;
     font-weight: 400;
     font-size: 16px;
+    @media (max-width: 400px) {
+      margin: 3px;
+    };
   }
 
   .previousClassName {
@@ -45,6 +52,9 @@
     margin: 8px;
     stroke: #7B7C88;
     fill: #7B7C88;
+    @media (max-width: 400px) {
+      margin: 3px;
+    };
   }
 
   .nextClassName {
@@ -60,6 +70,9 @@
     transform: matrix(-1, 0, 0, 1, 0, 0);
     stroke: #7B7C88;
     fill: #7B7C88;
+    @media (max-width: 400px) {
+      margin: 3px;
+    };
   }
 
   :disabled {
