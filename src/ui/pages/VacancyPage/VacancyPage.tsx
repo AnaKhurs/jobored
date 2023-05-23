@@ -25,23 +25,22 @@ export const VacancyPage = memo(() => {
     }, [dispatch, idVacancy])
 
     useEffect(() => {
-        const favorites: VacancyType[] = getFavorites();
-        vacancy && setVacancyWithFavorites(
-            favorites.some((f) => vacancy.id === f.id) ? {...vacancy, favorite: true} : vacancy)
-    }, [vacancy])
-
-    useEffect(() => {
         return () => {
             dispatch(cleanVacancy())
         }
     }, [dispatch])
 
+    useEffect(() => {
+        const favorites: VacancyType[] = getFavorites();
+        vacancy && setVacancyWithFavorites(
+            favorites.some((f) => vacancy.id === f.id) ? {...vacancy, favorite: true} : vacancy)
+    }, [vacancy])
+
     const rerenderVacancyWithFavorite = useCallback((id?: number, favorite?: boolean) => {
-        vacancy && favorite && setVacancyWithFavorites({...vacancy, favorite: favorite})
+        vacancy && setVacancyWithFavorites({...vacancy, favorite: !!favorite})
     }, [vacancy])
 
     if (!vacancy) {
-        dispatch(getVacancy({id: idVacancy}))
         return <Preloader/>
     }
 
