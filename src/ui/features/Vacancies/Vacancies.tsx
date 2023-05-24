@@ -5,17 +5,18 @@ import {Vacancy} from "../Vacancy/Vacancy";
 import {Box} from "@mantine/core";
 
 type PropsType = {
-    vacancies: VacancyType[]
+    vacancies?: VacancyType[]
 }
 
 export const Vacancies = memo(({vacancies}: PropsType) => {
+    debugger
 
     const [vacanciesWithFavorites, setVacanciesWithFavorites] = useState<VacancyType[]>()
 
     useEffect(() => {
         const favorites: VacancyType[] = getFavorites();
         setVacanciesWithFavorites(
-            vacancies.map((el) => (
+            vacancies && vacancies.map((el) => (
                 favorites.some((f) => el.id === f.id) ? {...el, favorite: true} : {...el, favorite: false}))
         )
     }, [vacancies])

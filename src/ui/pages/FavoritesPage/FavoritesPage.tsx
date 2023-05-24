@@ -39,15 +39,13 @@ export const FavoritesPage = memo(() => {
 
     return (
         <Flex direction="column" className={classes.resultsWrapper}>
-            {paginationArray &&
-            <>
-                <Vacancies vacancies={paginationArray}/>
-                <Pagination prevPage={prevPage}
-                            nextPage={nextPage}
-                            setPage={setPage}
-                            page={page}
-                            totalPages={totalPages}/>
-            </>}
+            <Vacancies vacancies={paginationArray}/>
+            {paginationArray && <Pagination prevPage={prevPage}
+                                      nextPage={nextPage}
+                                      setPage={setPage}
+                                      page={page}
+                                      totalPages={totalPages}/>
+            }
         </Flex>
     )
 })
