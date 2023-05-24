@@ -45,7 +45,7 @@ export const VacancyPage = memo(() => {
     }
 
     return (
-        <Flex direction="column" justify="center" align="center">
+        <Flex direction="column" justify="center" align="center" className={classes.container}>
             <Vacancy vacancy={vacancyWithFavorites} rerenderHandler={rerenderVacancyWithFavorite}/>
             <Paper className={classes.wrapper}
                    dangerouslySetInnerHTML={{__html: vacancy.vacancyRichText}}/>

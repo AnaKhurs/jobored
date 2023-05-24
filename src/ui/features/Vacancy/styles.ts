@@ -9,6 +9,7 @@ export const useStyles = createStyles((theme) => ({
         height: "100%",
         margin: "16px 0",
         maxWidth: "773px",
+        width: "100%",
         [theme.fn.smallerThan(600)]: {
             borderRadius: 0,
         },

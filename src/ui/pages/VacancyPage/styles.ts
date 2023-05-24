@@ -1,6 +1,13 @@
 import {createStyles} from "@mantine/core";
 
-export const useStyles = createStyles(() => ({
+export const useStyles = createStyles((theme) => ({
+    container: {
+        width: "773px",
+        margin: "0 auto",
+        [theme.fn.smallerThan(773)]: {
+            width: "100%",
+        },
+    },
     wrapper: {
         borderRadius: "12px",
         background: "#FFFFFF",
@@ -10,6 +17,7 @@ export const useStyles = createStyles(() => ({
         margin: "4px 0 40px",
         maxWidth: "773px",
         color: "#232134",
+        width: "100%",
 
         b: {
             fontWeight: 700,
