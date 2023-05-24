@@ -11,6 +11,10 @@ export const useStyles = createStyles((theme) => ({
         borderRadius: "8px",
         background: "#FFFFFF",
         flexWrap: "nowrap",
+        width: "773px",
+        [theme.fn.smallerThan(1200)]: {
+            width: "100%",
+        },
         [theme.fn.smallerThan(600)]: {
             margin: "0 10px",
         },
