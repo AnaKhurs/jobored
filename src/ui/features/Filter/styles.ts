@@ -1,6 +1,6 @@
 import {createStyles, rem} from "@mantine/core";
 
-export const useStyles = createStyles(() => ({
+export const useStyles = createStyles((theme) => ({
     wrapper: {
         borderRadius: "12px",
         background: "#FFFFFF",
@@ -8,6 +8,9 @@ export const useStyles = createStyles(() => ({
         padding: "20px",
         height: "100%",
         marginLeft: "28px",
+        [theme.fn.smallerThan(780)]: {
+            marginLeft: 0,
+        },
     },
     select: {
         "&.mantine-InputWrapper-root.mantine-Select-root": {
