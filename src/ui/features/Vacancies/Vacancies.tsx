@@ -9,7 +9,6 @@ type PropsType = {
 }
 
 export const Vacancies = memo(({vacancies}: PropsType) => {
-    debugger
 
     const [vacanciesWithFavorites, setVacanciesWithFavorites] = useState<VacancyType[]>()
 

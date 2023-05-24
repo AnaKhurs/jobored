@@ -15,8 +15,5 @@ export const useStyles = createStyles((theme) => ({
         [theme.fn.smallerThan(1200)]: {
             width: "100%",
         },
-        [theme.fn.smallerThan(600)]: {
-            margin: "0 10px",
-        },
     },
 }));
