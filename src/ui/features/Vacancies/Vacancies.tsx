@@ -25,7 +25,7 @@ export const Vacancies = memo(({vacancies}: PropsType) => {
     }, [])
 
     return (
-        <Box>
+        <Box w={"100%"}>
             {vacanciesWithFavorites?.map((el, index) => {
                 return <Vacancy key={index}
                                 vacancy={el}
