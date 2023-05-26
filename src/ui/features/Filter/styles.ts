@@ -8,6 +8,7 @@ export const useStyles = createStyles((theme) => ({
         padding: "20px",
         height: "100%",
         marginLeft: "28px",
+        marginTop: "8px",
         [theme.fn.smallerThan(780)]: {
             marginLeft: 0,
         },

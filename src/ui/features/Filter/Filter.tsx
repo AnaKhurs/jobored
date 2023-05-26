@@ -81,7 +81,7 @@ export const Filter = memo(({onClose}: PropsType) => {
                         onChange={onChangeSelectHandler}
                         placeholder="Выберете отрасль"
                         rightSection={<Svg iconName="iconChevronDown"/>}
-                        mt={8}
+                        styles={{ rightSection: { pointerEvents: "none" } }}
                 />
             </Flex>
             <Flex direction="column">
